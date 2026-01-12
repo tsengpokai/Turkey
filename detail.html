@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>行程詳情</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="back-btn">⬅ 返回總覽</a>
+        <div class="brand">🇹🇷 每日攻略</div>
+    </header>
+
+    <div id="detail-hero" class="hero" style="padding: 3rem 1rem;">
+        <h1 id="day-title"></h1>
+        <p id="day-date"></p>
+    </div>
+
+    <div class="container animate-up">
+        <div id="transport-section" class="transport-box">
+            <h3>🚀 交通接駁詳情</h3>
+            <p id="transport-text" style="white-space: pre-line; margin-top: 0.5rem;"></p>
+        </div>
+
+        <h2 class="section-title">🕒 當日流程</h2>
+        <div id="schedule-container">
+            <ul class="schedule-list" id="schedule-list">
+                </ul>
+        </div>
+
+        <div id="tools-section" style="margin-top: 3rem; display: none;">
+            <h2 class="section-title">🗣️ 經理附贈：溝通小卡</h2>
+            <div id="turkish-cards-container"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Keep calm and travel on.</p>
+    </footer>
+
+    <script src="data.js"></script>
+    <script>
+        // 內嵌簡單的詳細頁邏輯，從 URL 抓取參數
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const dayId = parseInt(params.get('day'));
+            
+            const dayData = tripData.days.find(d => d.id === dayId);
+
+            if (!dayData) {
+                document.body.innerHTML = "<div class='container'><h1>查無此行程</h1><a href='index.html'>返回</a></div>";
+                return;
+            }
+
+            // 渲染 Hero
+            document.getElementById('day-title').textContent = dayData.title;
+            document.getElementById('day-date').textContent = dayData.date;
+            document.getElementById('detail-hero').style.backgroundImage = `linear-gradient(rgba(28, 59, 87, 0.8), rgba(28, 59, 87, 0.6)), url('${dayData.image}')`;
+
+            // 渲染交通
+            document.getElementById('transport-text').textContent = dayData.transport;
+
+            // 渲染行程
+            const listContainer = document.getElementById('schedule-list');
+            dayData.schedule.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'schedule-item';
+                li.innerHTML = `
+                    <div class="time">${item.time}</div>
+                    <div class="event-name">${item.event}</div>
+                    <div class="event-note">${item.note}</div>
+                `;
+                listContainer.appendChild(li);
+            });
+
+            // 判斷是否顯示土耳其語卡片 (簡單邏輯：Day 8 和 Day 10 顯示交通卡，其他不顯示，或全部顯示在最後)
+            // 這裡做一個範例：如果是 Day 8 或 Day 10，顯示相關卡片
+            const toolsSection = document.getElementById('tools-section');
+            const cardsContainer = document.getElementById('turkish-cards-container');
+            
+            // 篩選相關卡片
+            let relevantCards = [];
+            if(dayId === 8) relevantCards = tripData.turkishCards.filter(c => c.tr.includes("Pamukkale") || c.tr.includes("emanet"));
+            if(dayId === 10) relevantCards = tripData.turkishCards.filter(c => c.tr.includes("tren"));
+            
+            if (relevantCards.length > 0) {
+                toolsSection.style.display = "block";
+                relevantCards.forEach(card => {
+                    const div = document.createElement('div');
+                    div.className = 'turkish-card';
+                    div.innerHTML = `${card.tr} <small>${card.en}</small>`;
+                    cardsContainer.appendChild(div);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
