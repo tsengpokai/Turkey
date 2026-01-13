@@ -3,61 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 土耳其冬季深度之旅 | Tseng</title>
+    <title>2026 土耳其星月奇蹟之旅 | 專屬行程</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
     <header>
-        <h1 class="hero-title">Turkish Winter Magic</h1>
-        <p class="hero-subtitle">為 Tseng 專屬訂製的 2026 深度之旅</p>
-        <p style="margin-top: 10px; font-size: 0.9rem;">📅 2026/01/21 - 01/31 | 🇹🇷 19,500 公里</p>
+        <div class="container">
+            <h1>TR TURKEY EXCLUSIVE</h1>
+            <p>Professional Travel Guide for Mr. Tseng</p>
+        </div>
     </header>
 
+    <section class="hero">
+        <div class="hero-content">
+            <h2>2026 Winter Odyssey</h2>
+            <div class="hero-info">
+                <span>10 Days</span>
+                <span>•</span>
+                <span>Istanbul to Cappadocia</span>
+                <span>•</span>
+                <span>19,500 km</span>
+            </div>
+            <br>
+            <a href="#itinerary" class="btn">開始旅程</a>
+        </div>
+    </section>
+
     <div class="container">
-        
-        <section>
-            <h2 class="section-title">✈️ 航班資訊 (Flights)</h2>
-            <div style="overflow-x: auto;">
-                <table class="flight-table" id="flight-list">
-                    <thead>
-                        <tr>
-                            <th>日期</th>
-                            <th>行程</th>
-                            <th>航班</th>
-                            <th>時間</th>
-                            <th>備註</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+        <section class="map-section">
+            <h3>總旅程路線圖</h3>
+            <div class="map-container">
+                <img src="https://images.unsplash.com/photo-1548685913-fe65d836338e?q=80&w=2000&auto=format&fit=crop" alt="Turkey Map Placeholder" id="routeMapImg">
+                <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">* 實際路線圖：伊斯坦堡 -> 卡帕多奇亞 -> 棉堡 -> 以弗所 -> 伊斯坦堡</p>
             </div>
         </section>
 
-        <section>
-            <h2 class="section-title">🏨 精選住宿 (Hotels)</h2>
-            <div class="grid" id="hotel-grid">
+        <section id="overview" class="info-grid">
+            <div class="info-card">
+                <h3><i class="fas fa-plane"></i> 航班資訊</h3>
+                <div id="flight-list"></div>
+            </div>
+            <div class="info-card">
+                <h3><i class="fas fa-hotel"></i> 精選住宿</h3>
+                <p style="font-size: 0.8rem; margin-bottom: 15px; color: #888;">* 點擊飯店名稱可查看地圖</p>
+                <div id="hotel-list"></div>
+            </div>
+        </section>
+
+        <section id="itinerary">
+            <h2 style="text-align: center; margin-bottom: 20px;">每日行程一覽</h2>
+            <p style="text-align: center; margin-bottom: 40px; color: var(--text-light);">點擊卡片查看詳細交通與攻略</p>
+            <div class="timeline-grid" id="days-container">
                 </div>
         </section>
 
-        <section>
-            <h2 class="section-title">🗺️ 每日行程 (Itinerary)</h2>
-            <p style="margin-bottom: 1rem; color: #666;">點擊卡片查看當日交通與景點詳情</p>
-            <div class="grid" id="itinerary-grid">
+        <section style="margin-bottom: 80px;">
+            <h2 style="text-align: center;">經理筆記：旅行必備</h2>
+            <div class="tips-grid" id="tips-container">
                 </div>
         </section>
-
-        <section>
-            <h2 class="section-title">💡 經理重要提醒 (Tips)</h2>
-            <div id="tips-container">
-                </div>
-        </section>
-
     </div>
 
-    <footer>
-        <p>Designed by Your Professional Turkey Travel Manager.</p>
-        <p>© 2026 Top Tier Travel Agency</p>
+    <footer style="background: #111; color: #555; text-align: center; padding: 20px;">
+        <p>&copy; 2026 Professional Travel Guide. Crafted for Tseng.</p>
     </footer>
 
     <script src="data.js"></script>

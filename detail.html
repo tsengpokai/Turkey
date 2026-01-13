@@ -5,73 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>行程詳情</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <header style="background: var(--dark);">
-        <h1 id="day-header" style="font-size: 1.5rem;">Loading...</h1>
+    <header>
+        <div class="container">
+            <a href="index.html" style="color: var(--gold); font-size: 0.9rem;">&larr; 返回總覽</a>
+            <h1 style="font-size: 1.2rem; margin-top: 5px;">Daily Guide</h1>
+        </div>
     </header>
 
+    <div id="detail-content">
+        </div>
+
     <div class="container">
-        <a href="index.html" class="back-btn">⬅ 返回行程總覽</a>
-
-        <div id="detail-content">
-            </div>
-
+        <div class="nav-footer">
+            <a href="index.html" class="btn" style="background: #888; border-color: #888;">回首頁</a>
+            <a id="next-day-btn" href="#" class="btn">下一天行程 &rarr;</a>
+        </div>
     </div>
 
-    <footer>
-        <p>© 2026 Top Tier Travel Agency</p>
+    <footer style="background: #111; color: #555; text-align: center; padding: 20px; margin-top: 40px;">
+        <p>2026 Turkey Winter Tour</p>
     </footer>
 
     <script src="data.js"></script>
+    <script src="script.js"></script>
     <script>
-        // Inline Script for Detail Page Logic
+        // Init detail page specific logic
         document.addEventListener('DOMContentLoaded', () => {
-            const params = new URLSearchParams(window.location.search);
-            const dayId = parseInt(params.get('day'));
-            
-            const dayData = travelData.itinerary.find(d => d.day === dayId);
-            const container = document.getElementById('detail-content');
-            const header = document.getElementById('day-header');
-
-            if (dayData) {
-                header.textContent = `Day ${dayData.day} : ${dayData.title}`;
-                
-                let html = `
-                    <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: var(--shadow); margin-bottom: 2rem;">
-                        <h2 style="color: var(--secondary); margin-bottom: 0.5rem;">${dayData.date}</h2>
-                        <p style="font-size: 1.2rem;">${dayData.summary}</p>
-                    </div>
-                    <div class="timeline">
-                `;
-
-                dayData.details.forEach(item => {
-                    // Add distinct icons based on type
-                    let icon = '';
-                    if(item.type === 'flight') icon = '✈️';
-                    else if(item.type === 'transport') icon = '🚌';
-                    else if(item.type === 'hotel') icon = '🛏️';
-                    else if(item.type === 'food') icon = '🍽️';
-                    else if(item.type === 'shop') icon = '🛍️';
-                    else icon = '📍';
-
-                    html += `
-                        <div class="timeline-item type-${item.type}">
-                            <div class="timeline-time">${item.time}</div>
-                            <div class="timeline-content">
-                                <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">${icon} ${item.title}</h3>
-                                <p>${item.desc}</p>
-                            </div>
-                        </div>
-                    `;
-                });
-
-                html += `</div>`; // Close timeline
-                container.innerHTML = html;
-            } else {
-                container.innerHTML = `<h2 style="text-align:center">找不到該日行程資料。</h2>`;
-            }
+            loadDayDetail();
         });
     </script>
 </body>
