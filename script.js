@@ -1,47 +1,71 @@
+// script.js
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. 初始化首頁 Meta 資訊
-    if (document.getElementById('main-title')) {
-        document.getElementById('main-title').textContent = tripData.meta.title;
-        document.getElementById('main-dates').textContent = tripData.meta.dates;
-    }
-
-    // 2. 渲染經理報告 (Report)
-    const reportContainer = document.getElementById('report-container');
-    if (reportContainer) {
-        tripData.report.forEach((item, index) => {
-            const card = document.createElement('div');
-            card.className = 'report-card animate-up';
-            card.style.animationDelay = `${index * 0.1}s`; // 階梯式動畫
-            card.innerHTML = `
-                <div class="report-icon">${item.icon}</div>
-                <div class="report-title">${item.title}</div>
-                <div style="font-size:0.9rem; color:#555;">${item.content}</div>
-            `;
-            reportContainer.appendChild(card);
-        });
-    }
-
-    // 3. 渲染每日行程卡片 (Days)
-    const daysContainer = document.getElementById('days-container');
-    if (daysContainer) {
-        tripData.days.forEach((day, index) => {
-            const link = document.createElement('a');
-            link.href = `detail.html?day=${day.id}`;
-            link.className = 'day-card animate-up';
-            link.style.animationDelay = `${0.3 + (index * 0.1)}s`;
-            
-            link.innerHTML = `
-                <img src="${day.image}" alt="${day.title}" class="day-img">
-                <div class="day-content">
-                    <div class="day-date">${day.date}</div>
-                    <div class="day-title">${day.title}</div>
-                    <div class="day-summary">${day.summary}</div>
-                    <div style="margin-top:1rem; color:var(--primary); font-size:0.85rem; font-weight:bold;">
-                        查看詳細交通與攻略 ➔
-                    </div>
-                </div>
-            `;
-            daysContainer.appendChild(link);
-        });
-    }
+    renderFlights();
+    renderHotels();
+    renderItineraryGrid();
+    renderTips();
 });
+
+function renderFlights() {
+    const tbody = document.querySelector('#flight-list tbody');
+    let html = '';
+    travelData.flights.forEach(f => {
+        html += `
+            <tr>
+                <td><strong>${f.date}</strong></td>
+                <td>${f.route}</td>
+                <td style="color: var(--secondary); font-weight: bold;">${f.code}</td>
+                <td>${f.time}</td>
+                <td>${f.note}</td>
+            </tr>
+        `;
+    });
+    tbody.innerHTML = html;
+}
+
+function renderHotels() {
+    const grid = document.getElementById('hotel-grid');
+    let html = '';
+    travelData.hotels.forEach(h => {
+        html += `
+            <div class="card" style="border-left-color: var(--secondary);">
+                <div class="card-date">${h.period} | ${h.city}</div>
+                <h3 class="card-title">${h.name}</h3>
+                <p class="card-desc">${h.desc}</p>
+            </div>
+        `;
+    });
+    grid.innerHTML = html;
+}
+
+function renderItineraryGrid() {
+    const grid = document.getElementById('itinerary-grid');
+    let html = '';
+    travelData.itinerary.forEach(day => {
+        html += `
+            <div class="card" onclick="window.location.href='detail.html?day=${day.day}'">
+                <div class="card-date">DAY ${day.day} - ${day.date}</div>
+                <h3 class="card-title">${day.title}</h3>
+                <p class="card-desc">${day.summary}</p>
+                <div style="margin-top: 1rem; color: var(--primary); font-weight: bold; font-size: 0.9rem;">
+                    查看詳情 ➔
+                </div>
+            </div>
+        `;
+    });
+    grid.innerHTML = html;
+}
+
+function renderTips() {
+    const container = document.getElementById('tips-container');
+    let html = '';
+    travelData.tips.forEach(tip => {
+        html += `
+            <div class="tip-box">
+                <div class="tip-header">${tip.category}</div>
+                <div class="tip-content">${tip.content}</div>
+            </div>
+        `;
+    });
+    container.innerHTML = html;
+}

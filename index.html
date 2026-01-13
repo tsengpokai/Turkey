@@ -3,32 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 土耳其星月奇蹟・終極攻略</title>
+    <title>2026 土耳其冬季深度之旅 | Tseng</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <header>
-        <div class="brand">🇹🇷 星月奇蹟之旅</div>
-        <div style="font-size: 0.8rem; opacity: 0.8;">Professional Travel Guide</div>
+        <h1 class="hero-title">Turkish Winter Magic</h1>
+        <p class="hero-subtitle">為 Tseng 專屬訂製的 2026 深度之旅</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">📅 2026/01/21 - 01/31 | 🇹🇷 19,500 公里</p>
     </header>
 
-    <div class="hero">
-        <h1 id="main-title">載入中...</h1>
-        <p id="main-dates">2026/01/21 - 2026/01/31</p>
-    </div>
-
     <div class="container">
-        <h2 class="section-title">📝 經理關鍵報告</h2>
-        <div id="report-container" class="report-grid">
+        
+        <section>
+            <h2 class="section-title">✈️ 航班資訊 (Flights)</h2>
+            <div style="overflow-x: auto;">
+                <table class="flight-table" id="flight-list">
+                    <thead>
+                        <tr>
+                            <th>日期</th>
+                            <th>行程</th>
+                            <th>航班</th>
+                            <th>時間</th>
+                            <th>備註</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
             </div>
+        </section>
 
-        <h2 class="section-title">📅 每日行程總覽</h2>
-        <div id="days-container" class="days-grid">
-            </div>
+        <section>
+            <h2 class="section-title">🏨 精選住宿 (Hotels)</h2>
+            <div class="grid" id="hotel-grid">
+                </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">🗺️ 每日行程 (Itinerary)</h2>
+            <p style="margin-bottom: 1rem; color: #666;">點擊卡片查看當日交通與景點詳情</p>
+            <div class="grid" id="itinerary-grid">
+                </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">💡 經理重要提醒 (Tips)</h2>
+            <div id="tips-container">
+                </div>
+        </section>
+
     </div>
 
     <footer>
-        <p>© 2026 Professional Travel Service. Designed for VIP Guests.</p>
+        <p>Designed by Your Professional Turkey Travel Manager.</p>
+        <p>© 2026 Top Tier Travel Agency</p>
     </footer>
 
     <script src="data.js"></script>
