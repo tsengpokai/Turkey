@@ -2,50 +2,84 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>行程詳情</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel-Decorative:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body class="detail-body relative-pattern">
-
-    <nav class="glass-nav">
-        <a href="index.html" class="nav-back"><i class="fas fa-chevron-left"></i> 返回總覽</a>
-        <div class="nav-title" id="nav-date">Loading...</div>
-    </nav>
-
-    <header id="detail-hero" class="detail-hero">
-        <div class="overlay-gradient-vivid"></div>
-        <div class="detail-header-content fade-in-up">
-            <h1 id="detail-title" class="vivid-title"></h1>
-            <div class="divider-ornament-sm"></div>
-            <p id="detail-subtitle" class="vivid-subtitle"></p>
-        </div>
-    </header>
-
-    <div class="container detail-layout z-index-high">
+    <style>
+        /* 詳細頁特定樣式 - 內嵌以確保優先權 */
+        .detail-hero { height: 40vh; position: relative; }
+        .detail-hero img { width: 100%; height: 100%; object-fit: cover; }
+        .detail-hero::after { content:''; position: absolute; bottom:0; left:0; width:100%; height:100px; background: linear-gradient(to top, var(--primary-dark), transparent); }
+        .detail-content { padding: 0 20px; margin-top: -60px; position: relative; z-index: 2; }
+        .detail-title { font-size: 2rem; margin: 0; color: var(--primary-gold); font-family: var(--font-heading); }
+        .detail-meta { display: flex; gap: 15px; margin: 10px 0 20px; font-size: 0.9rem; color: var(--text-gray); }
         
-        <aside class="info-sidebar">
-            <div id="hotel-card-container"></div>
-            <div id="transport-card-container"></div>
-        </aside>
-
-        <main class="timeline-container glass-panel vivid-panel">
-            <h3 class="panel-title"><i class="far fa-clock stat-icon"></i> 完整行程表</h3>
-            <div id="timeline-content" class="timeline">
-                </div>
-        </main>
-
-    </div>
-
-    <div class="footer-nav">
-        <a href="#" id="next-day-btn" class="btn-next-day vivid-btn">
-            前往下一天 <i class="fas fa-arrow-right"></i>
-        </a>
-    </div>
+        /* 垂直時間軸 */
+        .timeline { position: relative; border-left: 2px solid rgba(255,255,255,0.1); margin-left: 10px; padding-left: 25px; padding-top: 20px; }
+        .timeline-item { position: relative; margin-bottom: 30px; }
+        .timeline-dot { position: absolute; left: -31px; top: 0; width: 10px; height: 10px; background: var(--secondary-blue); border-radius: 50%; border: 2px solid var(--primary-dark); }
+        .time-label { font-size: 0.8rem; color: var(--primary-gold); font-weight: bold; margin-bottom: 5px; display: block; }
+        .event-card { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
+        .event-card h4 { margin: 0 0 5px; font-size: 1.1rem; }
+        .event-card p { margin: 0; font-size: 0.9rem; color: var(--text-gray); }
+        
+        .nav-back { position: absolute; top: 20px; left: 20px; z-index: 10; color: white; background: rgba(0,0,0,0.5); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="nav-back"><i class="fas fa-arrow-left"></i> 返回</a>
+    
+    <div id="detail-app">
+        </div>
 
     <script src="data.js"></script>
-    <script src="script.js"></script>
+    <script>
+        // 簡易詳細頁渲染邏輯
+        const params = new URLSearchParams(window.location.search);
+        const dayId = parseInt(params.get('day'));
+        const day = tripData.days.find(d => d.id === dayId);
+
+        if(day) {
+            let timelineHTML = day.timeline.map(t => `
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <span class="time-label">${t.time}</span>
+                    <div class="event-card">
+                        <h4><i class="fas fa-${t.icon}"></i> ${t.title}</h4>
+                        <p>${t.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('detail-app').innerHTML = `
+                <div class="detail-hero">
+                    <img src="${day.image || 'https://images.unsplash.com/photo-1527609593297-51b3a0c6790c'}" alt="cover">
+                </div>
+                <div class="detail-content">
+                    <h1 class="detail-title">${day.title}</h1>
+                    <div class="detail-meta">
+                        <span><i class="far fa-calendar"></i> ${day.date}</span>
+                        <span><i class="fas fa-map-marker-alt"></i> ${day.subtitle}</span>
+                    </div>
+                    
+                    ${day.hotel ? `<div style="background:rgba(212,175,55,0.1); padding:15px; border-radius:12px; margin-bottom:20px; border:1px solid rgba(212,175,55,0.3);">
+                        <div style="color:var(--primary-gold); font-size:0.8rem; font-weight:bold;">住宿</div>
+                        <div>${day.hotel.name}</div>
+                    </div>` : ''}
+                    
+                    <div class="timeline">
+                        ${timelineHTML}
+                    </div>
+                    
+                    <div style="text-align:center; padding: 30px 0;">
+                        <a href="index.html" style="color:var(--text-gray); font-size:0.9rem;">回到首頁</a>
+                    </div>
+                </div>
+            `;
+        } else {
+            window.location.href = 'index.html';
+        }
+    </script>
 </body>
 </html>

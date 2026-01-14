@@ -2,97 +2,100 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 土耳其星月奇蹟｜皇家絢麗版攻略</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>2026 土耳其星月奇蹟｜行動旗艦版</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel-Decorative:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <header class="hero-section">
-        <div class="video-overlay"></div>
-        <div class="hero-content fade-in-up">
-            <div class="ornament-divider"><i class="fas fa-star-and-crescent"></i></div>
-            <h3 class="tracking-in-expand">TURKEY LUXURY VOYAGE</h3>
-            <h1 class="main-title">星月奇蹟・皇家絢麗行</h1>
-            <p class="subtitle">2026 冬季深度十日・終極奢華攻略書</p>
-            <div class="traveler-badge glass-panel">
-                <i class="fas fa-crown"></i> 尊榮貴賓：Tseng 先生
+    <nav class="mobile-nav glass-nav">
+        <div class="nav-brand">TURKEY 2026</div>
+        <div class="nav-user"><i class="fas fa-user-circle"></i> Tseng</div>
+    </nav>
+
+    <header class="app-hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <span class="tag-pill">ROYAL VOYAGE</span>
+            <h1 class="main-title">星月<br>奇蹟</h1>
+            <p class="subtitle">10 Days Luxury Journey</p>
+            <div class="scroll-indicator">
+                <span>Scroll</span>
+                <i class="fas fa-chevron-down"></i>
             </div>
-            <a href="#summary" class="btn-shine">開啟您的非凡旅程</a>
         </div>
     </header>
 
-    <section id="summary" class="section-dark relative-pattern">
-        <div class="container">
-            <h2 class="section-heading">GRAND VOYAGE <span class="chinese-sub">旅程總覽</span></h2>
-            <div class="route-container glass-panel">
-                <div class="total-stats">
-                    <div class="stat-item">
-                        <i class="fas fa-calendar-day stat-icon"></i>
-                        <span class="stat-num">11</span>
-                        <span class="stat-label">Days</span>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-route stat-icon"></i>
-                        <span class="stat-num">19,500+</span>
-                        <span class="stat-label">km Total</span>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-map-marked-alt stat-icon"></i>
-                        <span class="stat-num">5</span>
-                        <span class="stat-label">UNESCO Sites</span>
-                    </div>
-                </div>
-            </div>
+    <section class="section-container map-section">
+        <div class="section-header">
+            <h2>Journey Map</h2>
+            <p>全境路線概覽</p>
         </div>
-    </section>
+        
+        <div class="map-card glass-card">
+            <div class="map-legend">
+                <div class="legend-item"><span class="dot air"></span> 飛機</div>
+                <div class="legend-item"><span class="dot bus"></span> 巴士</div>
+                <div class="legend-item"><span class="dot train"></span> 火車</div>
+            </div>
+            
+            <div class="svg-container">
+                <svg viewBox="0 0 400 250" class="turkey-map-svg">
+                    <path class="map-bg" d="M 20,80 Q 80,60 120,50 T 250,40 T 380,60 L 390,120 Q 380,180 300,190 T 100,200 L 20,150 Z" />
+                    
+                    <path d="M -20,20 Q 40,40 80,70" class="route-line flight-international" />
 
-    <section class="visual-map-section">
-        <div class="container">
-            <h2 class="section-heading">THE ROYAL ROUTE <span class="chinese-sub">飛行與境內路線圖</span></h2>
-            <div class="map-visual-container glass-panel">
-                <img src="https://i.imgur.com/8yN5j8S.png" alt="Turkey Route Map Base" class="map-base-img">
-                
-                <div class="map-marker flight-start" style="top: 20%; left: -10%;"><i class="fas fa-plane-departure"></i> 台北 (TPE)</div>
-                <div class="flight-path-curve"></div>
-                
-                <div class="map-point ist" style="top: 28%; left: 28%;"><i class="fas fa-mosque"></i> 伊斯坦堡</div>
-                <div class="map-point kap" style="top: 55%; left: 58%;"><i class="fas fa-hot-air-balloon"></i> 卡帕多奇亞</div>
-                <div class="map-point pam" style="top: 65%; left: 32%;"><i class="fas fa-water"></i> 棉堡/代尼茲利</div>
-                <div class="map-point eph" style="top: 60%; left: 20%;"><i class="fas fa-columns"></i> 以弗所/伊士麥</div>
+                    <path d="M 80,70 Q 150,40 220,110" class="route-line flight" />
+                    
+                    <path d="M 220,110 L 160,160 L 100,150" class="route-line bus" />
 
-                <svg class="map-lines-svg">
-                    <line x1="30%" y1="30%" x2="58%" y2="55%" class="map-line-path" />
-                    <line x1="58%" y1="55%" x2="34%" y2="67%" class="map-line-path" />
-                    <line x1="34%" y1="67%" x2="22%" y2="62%" class="map-line-path" />
-                    <path d="M 22% 60% Q 15% 45% 28% 30%" class="map-line-path flight" />
+                    <path d="M 100,150 L 40,140" class="route-line train" />
+
+                    <path d="M 40,140 Q 30,100 80,70" class="route-line flight" />
+
+                    <g class="city-node" transform="translate(80, 70)">
+                        <circle r="4" class="node-point"/>
+                        <text y="-10" class="node-label">Istanbul</text>
+                    </g>
+                    <g class="city-node" transform="translate(220, 110)">
+                        <circle r="4" class="node-point"/>
+                        <text y="-10" class="node-label">Cappadocia</text>
+                    </g>
+                    <g class="city-node" transform="translate(100, 150)">
+                        <circle r="4" class="node-point"/>
+                        <text y="15" class="node-label">Pamukkale</text>
+                    </g>
+                    <g class="city-node" transform="translate(40, 140)">
+                        <circle r="4" class="node-point"/>
+                        <text y="15" class="node-label" x="-10">Izmir/Ephesus</text>
+                    </g>
                 </svg>
             </div>
         </div>
     </section>
 
-    <section class="section-pattern relative-pattern">
-        <div class="container">
-            <div class="ornament-divider-sm"><i class="fas fa-star"></i></div>
-            <h2 class="section-heading">DAILY ITINERARY <span class="chinese-sub">每日行程・精彩瞬間</span></h2>
-            <div id="days-grid" class="days-grid vivid-grid">
-                </div>
+    <section class="section-container">
+        <div class="section-header">
+            <h2>Daily Plan</h2>
+            <p>精彩每一刻</p>
         </div>
+        <div id="days-list" class="mobile-card-list">
+            </div>
     </section>
 
-    <section class="section-dark relative-pattern">
-        <div class="container">
-            <h2 class="section-heading">ESSENTIALS <span class="chinese-sub">行前重要須知 (共10項)</span></h2>
-            <div class="reminder-grid" id="reminder-list">
-                </div>
+    <section class="section-container">
+        <div class="section-header">
+            <h2>Essentials</h2>
+            <p>經理備忘錄</p>
         </div>
+        <div class="scroll-snap-container" id="reminder-scroll">
+            </div>
     </section>
 
     <footer>
-        <div class="footer-ornament"><i class="fab fa-fly"></i></div>
-        <p>© 2026 Designed for Mr. Tseng | The Ultimate Turkish Experience</p>
+        <p>Designed for Mr. Tseng<br>2026 Luxury Tour Edition</p>
     </footer>
 
     <script src="data.js"></script>

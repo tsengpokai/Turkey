@@ -1,183 +1,138 @@
 :root {
-    --bg-dark: #090c15;       /* 更深邃的夜空藍 */
-    --bg-pattern-overlay: url('https://www.transparenttextures.com/patterns/arabesque.png'); /* 土耳其紋理 */
+    /* 2026 皇家色票 */
+    --primary-dark: #0f172a;
+    --primary-gold: #d4af37;
+    --secondary-blue: #0ea5e9;
+    --accent-red: #e11d48;
+    --text-white: #f8fafc;
+    --text-gray: #94a3b8;
     
-    /* 奢華寶石色調 */
-    --accent-gold: #d4af37;   /* 經典奢華金 */
-    --accent-turquoise: #00a896; /* 土耳其綠松石 */
-    --accent-pomegranate: #c0392b; /* 石榴紅 */
-    --accent-amethyst: #9b59b6; /* 紫水晶 (用於夜間) */
-
-    --text-light: #fdfefe;    /* 純淨白 */
-    --text-cream: #f0e6d2;    /* 奶油米白 */
+    /* 玻璃擬態參數 */
+    --glass-bg: rgba(30, 41, 59, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
     
-    --glass-bg: rgba(20, 25, 35, 0.75);
-    --glass-border: rgba(212, 175, 55, 0.2); /* 金色邊框 */
-    
-    /* 字體升級 */
-    --font-deco: 'Cinzel Decorative', cursive; /* 裝飾標題 */
-    --font-heading: 'Playfair Display', serif; /* 優雅標題 */
-    --font-body: 'Montserrat', sans-serif;     /* 現代內文 */
+    /* 字體 */
+    --font-heading: 'Cinzel', serif;
+    --font-body: 'Lato', sans-serif;
 }
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
 body {
-    background-color: var(--bg-dark);
-    /* 加入背景紋理 */
-    background-image: var(--bg-pattern-overlay);
-    background-attachment: fixed;
-    background-size: 400px;
-    color: var(--text-light);
+    background-color: var(--primary-dark);
+    color: var(--text-white);
     font-family: var(--font-body);
     margin: 0;
-    line-height: 1.7;
-    scroll-behavior: smooth;
+    padding-bottom: 40px;
+    /* 背景紋理優化 */
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(14, 165, 233, 0.05) 0%, transparent 20%);
 }
 
-h1, h2, h3 { font-family: var(--font-heading); margin: 0; font-weight: normal; }
-h1.main-title, h2.section-heading { font-family: var(--font-deco); }
-a { text-decoration: none; color: inherit; transition: 0.4s ease; }
+/* --- 手機版導航 --- */
+.mobile-nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: 60px; display: flex; justify-content: space-between; align-items: center;
+    padding: 0 20px; z-index: 100;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+}
+.nav-brand { font-family: var(--font-heading); font-weight: 700; color: var(--primary-gold); letter-spacing: 1px; }
+.nav-user { color: var(--text-gray); font-size: 0.9rem; }
 
-/* --- 通用類別與裝飾 --- */
-.container { max-width: 1150px; margin: 0 auto; padding: 0 25px; }
-.glass-panel {
-    background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+/* --- 封面區 (全螢幕) --- */
+.app-hero {
+    height: 100vh; position: relative; display: flex; align-items: center; padding: 0 30px;
     overflow: hidden;
 }
-.relative-pattern { position: relative; z-index: 2; }
-.z-index-high { position: relative; z-index: 10; }
-.ornament-divider, .ornament-divider-sm, .footer-ornament { color: var(--accent-gold); text-align: center; margin: 20px 0; }
-.ornament-divider { font-size: 2rem; }
-
-/* --- Hero Section --- */
-.hero-section {
-    height: 100vh;
-    /* 更換為更具張力的熱氣球日出圖 */
-    background: url('https://images.unsplash.com/photo-1527609593297-51b3a0c6790c?q=80&w=2000') center/cover no-repeat fixed;
-    display: flex; align-items: center; justify-content: center; position: relative; text-align: center;
+.hero-bg {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+    background: url('https://images.unsplash.com/photo-1545153970-8ea10234f2a7?q=80&w=800') center/cover;
+    filter: brightness(0.6);
 }
-.video-overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(to bottom, rgba(9,12,21,0.4), rgba(9,12,21,0.8)); }
-.hero-content { position: relative; z-index: 3; padding: 30px; max-width: 900px; }
-.main-title { font-size: 5rem; letter-spacing: 3px; text-shadow: 0 5px 25px rgba(0,0,0,0.7); background: linear-gradient(to right, #fff, var(--accent-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.subtitle { font-size: 1.4rem; color: var(--text-cream); letter-spacing: 3px; margin-top: 15px; font-family: var(--font-body); }
-.traveler-badge { display: inline-block; margin-top: 30px; padding: 10px 25px; color: var(--accent-gold); font-weight: 600; letter-spacing: 1px; border: 1px solid var(--accent-gold); }
-
-.btn-shine {
-    display: inline-block; margin-top: 40px; padding: 18px 50px;
-    background: linear-gradient(45deg, var(--accent-gold), #f5d58a);
-    color: var(--bg-dark); font-weight: bold; text-transform: uppercase; letter-spacing: 3px;
-    border-radius: 50px; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4); position: relative; overflow: hidden;
+.hero-content { position: relative; z-index: 1; margin-top: -40px; }
+.tag-pill {
+    display: inline-block; padding: 6px 12px; border: 1px solid var(--primary-gold);
+    border-radius: 20px; color: var(--primary-gold); font-size: 0.75rem; letter-spacing: 2px;
+    margin-bottom: 15px;
 }
-.btn-shine:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(212, 175, 55, 0.6); }
-
-/* --- Section Headings --- */
-.section-dark, .section-pattern { padding: 90px 0; }
-.section-heading { text-align: center; font-size: 3rem; margin-bottom: 60px; color: var(--accent-gold); position: relative; }
-.section-heading::after { content: '✦'; display: block; font-size: 1.5rem; margin-top: 15px; color: var(--accent-turquoise); }
-.chinese-sub { display: block; font-size: 1.1rem; color: var(--accent-turquoise); font-family: var(--font-body); margin-top: 10px; font-weight: 600; letter-spacing: 2px; }
-
-/* --- Dashboard Summary --- */
-.route-container { padding: 50px; }
-.total-stats { display: flex; justify-content: space-around; align-items: center; }
-.stat-item { text-align: center; }
-.stat-icon { display: block; font-size: 2.5rem; color: var(--accent-turquoise); margin-bottom: 15px; }
-.stat-num { display: block; font-size: 3rem; font-weight: bold; color: var(--text-light); font-family: var(--font-deco); }
-.stat-label { font-size: 1rem; color: var(--text-cream); text-transform: uppercase; letter-spacing: 2px; }
-
-/* --- [NEW] Visual Map Section --- */
-.visual-map-section { padding: 50px 0 100px; }
-.map-visual-container {
-    position: relative; width: 100%; height: 500px; /* 高度依需求調整 */
-    background: #131a2b; overflow: hidden;
-}
-.map-base-img {
-    width: 100%; height: 100%; object-fit: cover; opacity: 0.5; /* 讓地圖稍微暗一點 */
-    filter: sepia(30%) hue-rotate(180deg) saturate(1.5); /* 調整地圖色調偏藍金 */
-}
-/* 地圖上的點與線 */
-.map-point, .map-marker {
-    position: absolute; transform: translate(-50%, -50%);
-    color: var(--text-light); font-weight: bold; text-shadow: 0 2px 5px black;
-    display: flex; flex-direction: column; align-items: center; z-index: 5;
-}
-.map-point i, .map-marker i { font-size: 1.8rem; color: var(--accent-gold); margin-bottom: 5px; filter: drop-shadow(0 0 10px var(--accent-gold)); }
-.flight-start i { color: var(--accent-turquoise); filter: drop-shadow(0 0 10px var(--accent-turquoise)); }
-
-/* SVG 線條 */
-.map-lines-svg {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none;
-}
-.map-line-path {
-    stroke: var(--accent-gold); stroke-width: 3; fill: none;
-    stroke-dasharray: 10, 5; animation: dashAnimation 20s linear infinite; opacity: 0.7;
-}
-.map-line-path.flight { stroke: var(--accent-turquoise); stroke-width: 4; }
-@keyframes dashAnimation { to { stroke-dashoffset: -1000; } }
-
-/* 國際線弧線示意 (用 CSS border 模擬) */
-.flight-path-curve {
-    position: absolute; top: 10%; left: -5%; width: 40%; height: 30%;
-    border-top: 4px dotted var(--accent-turquoise); border-right: 4px dotted transparent;
-    border-radius: 50%; transform: rotate(-15deg); opacity: 0.6; z-index: 1;
+/* clamp 自動縮放字體：最小 3rem，偏好 10vw，最大 5rem */
+.main-title { font-size: clamp(3rem, 12vw, 5rem); line-height: 1.1; margin: 0; font-family: var(--font-heading); background: linear-gradient(to right, #fff, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.subtitle { font-size: 1.1rem; color: var(--text-gray); margin-top: 10px; letter-spacing: 1px; }
+.scroll-indicator {
+    position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; font-size: 0.8rem; color: var(--text-gray); opacity: 0.7;
 }
 
-/* --- Vivid Days Grid (滿版卡片) --- */
-.vivid-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 35px; }
-.day-card {
-    height: 480px; /* 更高大的卡片 */
-    border-radius: 25px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); border: none;
+/* --- 通用容器 --- */
+.section-container { padding: 40px 20px 0; }
+.section-header { margin-bottom: 25px; }
+.section-header h2 { font-size: 1.8rem; font-family: var(--font-heading); margin: 0; color: var(--primary-gold); }
+.section-header p { margin: 5px 0 0; color: var(--text-gray); font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; }
+
+/* --- [修正] SVG 地圖樣式 --- */
+.map-card { padding: 20px; border-radius: 20px; background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); }
+.map-legend { display: flex; gap: 15px; margin-bottom: 15px; font-size: 0.8rem; justify-content: center; color: var(--text-gray); }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; }
+.dot.air { background: var(--secondary-blue); }
+.dot.bus { background: var(--primary-gold); }
+.dot.train { background: var(--accent-red); }
+
+.svg-container { width: 100%; height: auto; filter: drop-shadow(0 0 10px rgba(0,0,0,0.5)); }
+.turkey-map-svg { width: 100%; height: auto; overflow: visible; }
+.map-bg { fill: rgba(255,255,255,0.05); stroke: rgba(255,255,255,0.1); stroke-width: 1; }
+
+/* 路線動畫設定 */
+.route-line { fill: none; stroke-width: 2; stroke-linecap: round; animation: drawLine 3s ease forwards; }
+.flight-international { stroke: var(--secondary-blue); stroke-dasharray: 4, 4; opacity: 0.5; }
+.flight { stroke: var(--secondary-blue); stroke-dasharray: 4, 4; }
+.bus { stroke: var(--primary-gold); }
+.train { stroke: var(--accent-red); stroke-dasharray: 8, 2; }
+
+.node-point { fill: #fff; }
+.node-label { fill: var(--text-gray); font-size: 10px; font-family: sans-serif; }
+
+/* --- 每日卡片 (手機優化) --- */
+.mobile-card-list { display: flex; flex-direction: column; gap: 20px; }
+.day-card-mobile {
+    background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px;
+    overflow: hidden; display: flex; flex-direction: column;
 }
-/* 預設無圖片時的奢華漸層底色 */
-.no-image-bg { background: linear-gradient(135deg, var(--bg-dark), var(--accent-turquoise)); }
-
-.day-card-overlay {
-    background: linear-gradient(to top, rgba(9,12,21,1) 10%, rgba(9,12,21,0.7) 50%, transparent);
-    padding: 35px; justify-content: flex-end;
+.card-img-box { height: 180px; position: relative; }
+.card-img-box img { width: 100%; height: 100%; object-fit: cover; }
+.day-badge {
+    position: absolute; top: 15px; left: 15px; background: var(--primary-gold); color: #000;
+    padding: 4px 10px; border-radius: 12px; font-weight: bold; font-size: 0.8rem;
 }
-.day-num { color: var(--accent-gold); font-size: 1.1rem; letter-spacing: 2px; font-family: var(--font-deco); }
-.day-title { font-size: 2.2rem; margin: 5px 0 15px; line-height: 1.1; color: var(--text-light); text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-.day-desc { color: var(--text-cream); font-size: 1rem; line-height: 1.6; margin-bottom: 25px; font-weight: 400; opacity: 0.9; }
-.btn-text { color: var(--accent-turquoise); font-weight: 700; letter-spacing: 2px; display: flex; align-items: center; gap: 10px; }
-.btn-text i { transition: 0.3s; }
-.day-card:hover .btn-text i { transform: translateX(10px); }
+.card-body { padding: 20px; }
+.card-title { font-size: 1.4rem; margin: 0 0 5px; font-family: var(--font-heading); color: var(--text-white); }
+.card-sub { font-size: 0.85rem; color: var(--secondary-blue); margin-bottom: 10px; display: block; }
+.card-desc { font-size: 0.95rem; color: var(--text-gray); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.card-footer { margin-top: 15px; display: flex; justify-content: flex-end; }
+.btn-read { color: var(--primary-gold); font-size: 0.9rem; font-weight: bold; text-transform: uppercase; }
 
-/* --- Expanded Reminder Grid (雙欄) --- */
-.reminder-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; }
-.reminder-card-item {
-    background: rgba(255,255,255,0.03); border: 1px solid rgba(212, 175, 55, 0.1);
-    padding: 25px; border-radius: 15px; transition: 0.3s; display: flex; gap: 20px; align-items: flex-start;
+/* --- 橫向捲動行前須知 --- */
+.scroll-snap-container {
+    display: flex; gap: 15px; overflow-x: auto; padding-bottom: 20px;
+    scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
 }
-.reminder-card-item:hover { background: rgba(255,255,255,0.07); border-color: var(--accent-gold); transform: translateY(-5px); }
-.reminder-icon-box {
-    flex-shrink: 0; width: 50px; height: 50px; background: var(--accent-turquoise); color: var(--bg-dark);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+/* 隱藏卷軸 */
+.scroll-snap-container::-webkit-scrollbar { display: none; }
+.reminder-card-snap {
+    flex: 0 0 85%; /* 卡片佔寬度 85%，讓使用者看到下一張卡片的一角 */
+    scroll-snap-align: center;
+    background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+    border: 1px solid var(--glass-border); border-radius: 16px; padding: 20px;
+    display: flex; align-items: flex-start; gap: 15px;
 }
-.reminder-content-box h4 { color: var(--accent-gold); margin-bottom: 8px; font-size: 1.1rem; }
-.reminder-content-box p { color: var(--text-cream); font-size: 0.95rem; margin: 0; }
-
-/* --- Detail Page & Vivid Enhancements --- */
-.overlay-gradient-vivid { background: linear-gradient(to bottom, rgba(9,12,21,0.2), var(--bg-dark) 90%); }
-.vivid-title { text-shadow: 0 5px 30px rgba(0,0,0,0.8); font-size: 4rem; }
-.divider-ornament-sm { height: 3px; width: 80px; background: var(--accent-gold); margin: 20px auto; position: relative; }
-.divider-ornament-sm::after { content: '♦'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--accent-gold); background: var(--bg-dark); padding: 0 10px; }
-
-.info-card { background: rgba(9,12,21,0.8); border: 1px solid var(--accent-turquoise); }
-.info-card:hover { box-shadow: 0 0 25px rgba(0, 168, 150, 0.3); border-color: var(--accent-gold); }
-.info-label { color: var(--accent-turquoise); }
-.btn-map:hover { background: var(--accent-turquoise); }
-
-.vivid-panel { border-color: rgba(0, 168, 150, 0.3); }
-.panel-title { color: var(--accent-gold); border-bottom-color: rgba(212, 175, 55, 0.3); }
-.timeline-item::before { border-color: var(--accent-turquoise); background: var(--bg-dark); box-shadow: 0 0 10px var(--accent-turquoise); }
-.time-badge { background: linear-gradient(45deg, var(--accent-pomegranate), #e74c3c); box-shadow: 0 5px 15px rgba(192, 57, 43, 0.4); }
-.event-title i { color: var(--accent-gold); filter: drop-shadow(0 0 5px var(--accent-gold)); }
-
-.vivid-btn { background: linear-gradient(45deg, var(--accent-gold), #f1c40f); color: var(--bg-dark); box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3); }
-.vivid-btn:hover { background: linear-gradient(45deg, var(--accent-turquoise), #1abc9c); color: white; box-shadow: 0 15px 40px rgba(0, 168, 150, 0.5); }
+.icon-box {
+    width: 40px; height: 40px; background: rgba(212, 175, 55, 0.2); color: var(--primary-gold);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;
+}
+.remind-text h4 { margin: 0 0 5px; color: var(--text-white); font-size: 1rem; }
+.remind-text p { margin: 0; font-size: 0.85rem; color: var(--text-gray); line-height: 1.5; }
 
 /* Footer */
-footer { text-align: center; padding: 50px 0; color: var(--text-cream); font-size: 0.9rem; }
+footer { text-align: center; margin-top: 40px; color: var(--text-gray); font-size: 0.8rem; opacity: 0.5; }
