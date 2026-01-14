@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>行程詳情</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel-Decorative:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="detail-body">
+<body class="detail-body relative-pattern">
 
     <nav class="glass-nav">
         <a href="index.html" class="nav-back"><i class="fas fa-chevron-left"></i> 返回總覽</a>
@@ -16,23 +16,23 @@
     </nav>
 
     <header id="detail-hero" class="detail-hero">
-        <div class="overlay-gradient"></div>
+        <div class="overlay-gradient-vivid"></div>
         <div class="detail-header-content fade-in-up">
-            <h1 id="detail-title"></h1>
-            <p id="detail-subtitle"></p>
+            <h1 id="detail-title" class="vivid-title"></h1>
+            <div class="divider-ornament-sm"></div>
+            <p id="detail-subtitle" class="vivid-subtitle"></p>
         </div>
     </header>
 
-    <div class="container detail-layout">
+    <div class="container detail-layout z-index-high">
         
         <aside class="info-sidebar">
             <div id="hotel-card-container"></div>
-            
             <div id="transport-card-container"></div>
         </aside>
 
-        <main class="timeline-container glass-panel">
-            <h3 class="panel-title"><i class="far fa-clock"></i> 完整行程表</h3>
+        <main class="timeline-container glass-panel vivid-panel">
+            <h3 class="panel-title"><i class="far fa-clock stat-icon"></i> 完整行程表</h3>
             <div id="timeline-content" class="timeline">
                 </div>
         </main>
@@ -40,7 +40,7 @@
     </div>
 
     <div class="footer-nav">
-        <a href="#" id="next-day-btn" class="btn-next-day">
+        <a href="#" id="next-day-btn" class="btn-next-day vivid-btn">
             前往下一天 <i class="fas fa-arrow-right"></i>
         </a>
     </div>

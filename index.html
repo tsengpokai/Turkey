@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 土耳其星月奇蹟｜白金行程手冊</title>
+    <title>2026 土耳其星月奇蹟｜皇家絢麗版攻略</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel-Decorative:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -13,73 +13,86 @@
     <header class="hero-section">
         <div class="video-overlay"></div>
         <div class="hero-content fade-in-up">
-            <h3 class="tracking-in-expand">TURKEY LUXURY TOUR</h3>
-            <h1 class="main-title">星月奇蹟</h1>
-            <div class="divider-gold"></div>
-            <p class="subtitle">2026 冬季深度十日・白金典藏攻略</p>
-            <div class="traveler-badge">
-                <i class="fas fa-user-astronaut"></i> 貴賓：Tseng 先生
+            <div class="ornament-divider"><i class="fas fa-star-and-crescent"></i></div>
+            <h3 class="tracking-in-expand">TURKEY LUXURY VOYAGE</h3>
+            <h1 class="main-title">星月奇蹟・皇家絢麗行</h1>
+            <p class="subtitle">2026 冬季深度十日・終極奢華攻略書</p>
+            <div class="traveler-badge glass-panel">
+                <i class="fas fa-crown"></i> 尊榮貴賓：Tseng 先生
             </div>
-            <a href="#summary" class="btn-shine">開始探索</a>
+            <a href="#summary" class="btn-shine">開啟您的非凡旅程</a>
         </div>
     </header>
 
-    <section id="summary" class="section-dark">
+    <section id="summary" class="section-dark relative-pattern">
         <div class="container">
             <h2 class="section-heading">GRAND VOYAGE <span class="chinese-sub">旅程總覽</span></h2>
-            
             <div class="route-container glass-panel">
-                <div class="route-track">
-                    <div class="route-point" data-city="台北"><i class="fas fa-home"></i></div>
-                    <div class="route-line"></div>
-                    <div class="route-point" data-city="曼谷"><i class="fas fa-plane"></i></div>
-                    <div class="route-line"></div>
-                    <div class="route-point active" data-city="伊斯坦堡"><i class="fas fa-mosque"></i></div>
-                    <div class="route-line"></div>
-                    <div class="route-point" data-city="卡帕多奇亞"><i class="fas fa-hot-air-balloon"></i></div>
-                    <div class="route-line"></div>
-                    <div class="route-point" data-city="棉堡"><i class="fas fa-water"></i></div>
-                    <div class="route-line"></div>
-                    <div class="route-point" data-city="以弗所"><i class="fas fa-columns"></i></div>
-                </div>
                 <div class="total-stats">
                     <div class="stat-item">
+                        <i class="fas fa-calendar-day stat-icon"></i>
                         <span class="stat-num">11</span>
                         <span class="stat-label">Days</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-num">19,500</span>
+                        <i class="fas fa-route stat-icon"></i>
+                        <span class="stat-num">19,500+</span>
                         <span class="stat-label">km Total</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-num">4</span>
-                        <span class="stat-label">Major Cities</span>
+                        <i class="fas fa-map-marked-alt stat-icon"></i>
+                        <span class="stat-num">5</span>
+                        <span class="stat-label">UNESCO Sites</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section-pattern">
+    <section class="visual-map-section">
         <div class="container">
-            <h2 class="section-heading">DAILY ITINERARY <span class="chinese-sub">每日行程</span></h2>
-            <div id="days-grid" class="days-grid">
+            <h2 class="section-heading">THE ROYAL ROUTE <span class="chinese-sub">飛行與境內路線圖</span></h2>
+            <div class="map-visual-container glass-panel">
+                <img src="https://i.imgur.com/8yN5j8S.png" alt="Turkey Route Map Base" class="map-base-img">
+                
+                <div class="map-marker flight-start" style="top: 20%; left: -10%;"><i class="fas fa-plane-departure"></i> 台北 (TPE)</div>
+                <div class="flight-path-curve"></div>
+                
+                <div class="map-point ist" style="top: 28%; left: 28%;"><i class="fas fa-mosque"></i> 伊斯坦堡</div>
+                <div class="map-point kap" style="top: 55%; left: 58%;"><i class="fas fa-hot-air-balloon"></i> 卡帕多奇亞</div>
+                <div class="map-point pam" style="top: 65%; left: 32%;"><i class="fas fa-water"></i> 棉堡/代尼茲利</div>
+                <div class="map-point eph" style="top: 60%; left: 20%;"><i class="fas fa-columns"></i> 以弗所/伊士麥</div>
+
+                <svg class="map-lines-svg">
+                    <line x1="30%" y1="30%" x2="58%" y2="55%" class="map-line-path" />
+                    <line x1="58%" y1="55%" x2="34%" y2="67%" class="map-line-path" />
+                    <line x1="34%" y1="67%" x2="22%" y2="62%" class="map-line-path" />
+                    <path d="M 22% 60% Q 15% 45% 28% 30%" class="map-line-path flight" />
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-pattern relative-pattern">
+        <div class="container">
+            <div class="ornament-divider-sm"><i class="fas fa-star"></i></div>
+            <h2 class="section-heading">DAILY ITINERARY <span class="chinese-sub">每日行程・精彩瞬間</span></h2>
+            <div id="days-grid" class="days-grid vivid-grid">
                 </div>
         </div>
     </section>
 
-    <section class="section-dark">
+    <section class="section-dark relative-pattern">
         <div class="container">
-            <h2 class="section-heading">ESSENTIALS <span class="chinese-sub">行前重要須知</span></h2>
-            <div class="reminder-card glass-panel">
-                <div class="reminder-content" id="reminder-list">
-                    </div>
-            </div>
+            <h2 class="section-heading">ESSENTIALS <span class="chinese-sub">行前重要須知 (共10項)</span></h2>
+            <div class="reminder-grid" id="reminder-list">
+                </div>
         </div>
     </section>
 
     <footer>
-        <p>© 2026 Designed for Mr. Tseng | Top-Tier Travel Experience</p>
+        <div class="footer-ornament"><i class="fab fa-fly"></i></div>
+        <p>© 2026 Designed for Mr. Tseng | The Ultimate Turkish Experience</p>
     </footer>
 
     <script src="data.js"></script>
