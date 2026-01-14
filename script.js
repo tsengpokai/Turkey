@@ -3,7 +3,6 @@
 // Open Google Maps
 function openMap(query) {
     if(!query) return;
-    // 使用 encodeURIComponent 確保中文查詢正確
     window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`, '_blank');
 }
 
@@ -61,7 +60,7 @@ function renderIndex() {
         `;
     });
 
-    // Tips (Removed "Manager" title logic handled in HTML)
+    // Tips (Expanded)
     travelData.tips.forEach(tip => {
         tipsContainer.innerHTML += `
             <div class="tip-box">
@@ -104,8 +103,7 @@ function loadDayDetail() {
     `;
 
     dayData.details.forEach(item => {
-        // Auto-detect transport items for styling
-        const isTransport = item.action.includes("搭乘") || item.action.includes("航班") || item.action.includes("接駁") || item.action.includes("移動");
+        const isTransport = item.action.includes("搭乘") || item.action.includes("航班") || item.action.includes("接駁") || item.action.includes("移動") || item.action.includes("巴士");
         const transportClass = isTransport ? "transport" : "";
         
         let icon = '';

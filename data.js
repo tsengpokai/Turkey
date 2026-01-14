@@ -1,8 +1,11 @@
 // data.js
 const travelData = {
+    // 品牌與基本資訊
     traveler: "Tseng",
     dates: "2026/01/21 - 2026/01/31",
     totalDistance: "19,500 km",
+    
+    // 航班 (維持不變)
     flights: [
         { date: "1/21", route: "台北 TPE ➔ 曼谷 BKK", flight: "TG635", time: "18:20 - 21:45", note: "泰航直掛，免入境" },
         { date: "1/21", route: "曼谷 BKK ➔ 伊斯坦堡 IST", flight: "TG900", time: "23:45 - 06:05(+1)", note: "同航廈轉機" },
@@ -11,6 +14,8 @@ const travelData = {
         { date: "1/30", route: "伊斯坦堡 IST ➔ 曼谷 BKK", flight: "TG901", time: "16:30 - 05:20(+1)", note: "需備妥泰國簽證" },
         { date: "1/31", route: "曼谷 BKK ➔ 台北 TPE", flight: "JX742", time: "13:45 - 18:25", note: "需入境領行李重掛" }
     ],
+    
+    // 住宿 (維持不變)
     hotels: [
         { dates: "1/22-24", name: "Hotel Evsen", location: "伊斯坦堡 (舊城)", note: "Sirkeci 區，步行至 T1 電車站僅 2 分鐘", mapQuery: "Hotel Evsen Istanbul" },
         { dates: "1/24-25", name: "Kaya Hotel", location: "伊斯坦堡 (亞洲)", note: "鄰近 SAW 機場，早班機專用", mapQuery: "Kaya Hotel Istanbul" },
@@ -18,12 +23,28 @@ const travelData = {
         { dates: "1/27-28", name: "豪華夜間巴士", location: "移動中", note: "Kamil Koç / Flixbus (寬敞 2+1 座位)", mapQuery: "" },
         { dates: "1/28-30", name: "Urkmez Hotel", location: "塞爾丘克", note: "火車站對面，旁邊即是古羅馬水道橋", mapQuery: "Urkmez Hotel Selcuk" }
     ],
+
+    // 經理筆記 (大幅擴充版)
     tips: [
-        { title: "安全與防詐", content: "小心路邊擦鞋童掉刷子陷阱；拒絕塔克西姆區陌生人的『喝一杯』邀請；搭計程車請務必使用 BiTaksi 或 Uber。" },
-        { title: "生活文化", content: "公廁多需收費 (5-10里拉)；自來水不可生飲；進入清真寺需脫鞋，女性需戴頭巾；伊斯坦堡是對貓友善的城市。" },
-        { title: "氣候裝備", content: "卡帕多奇亞冬季極冷且泥濘，強烈建議穿著深紋防滑登山靴；棉堡需赤腳，建議自備塑膠袋裝鞋與厚襪保暖。" },
-        { title: "交通簽證", content: "回程曼谷轉機接星宇航空(JX)需入境，請務必提前辦理泰國簽證；Denizli 巴士站寄放行李只收現金。" }
+        { 
+            title: "安全與防詐騙 (Safety)", 
+            content: "1. 擦鞋童陷阱：伊斯坦堡舊城區若看到有人刷子掉落，絕對不要撿，這是敲詐起手式。<br>2. 拒絕搭訕：單身男性在塔克西姆區若遇陌生人熱情邀約『喝一杯』，請堅定拒絕 (Bar Scam)。<br>3. 計程車：請務必下載並使用 <strong>BiTaksi</strong> 或 <strong>Uber</strong>，避免路邊攔車被繞路或換假鈔。" 
+        },
+        { 
+            title: "交通移動攻略 (Transport)", 
+            content: "1. 伊斯坦堡卡 (Istanbulkart)：一人一卡不可共用，轉乘有優惠。地鐵站黃色機台可購買。<br>2. 夜間巴士：搭乘 Kamil Koç 請提早30分鐘到站，車程約10小時，建議自備頸枕與耳塞。<br>3. 廁所文化：土耳其公廁多需收費 (約5-10里拉)，請隨身準備小額零錢。" 
+        },
+        { 
+            title: "冬季極地裝備 (Winter Gear)", 
+            content: "1. 卡帕多奇亞嚴冬：一月氣溫常在零下，熱氣球清晨極冷，請備妥毛帽、手套、防風外套。<br>2. 鞋類選擇：綠線健行與紅線爬坡多泥濘結冰，<strong>強烈建議穿著深紋防滑登山靴</strong>，切勿穿白鞋或平底布鞋。<br>3. 棉堡：需赤腳進入，水溫極低，建議自備塑膠袋裝鞋，並帶厚毛襪上岸後立刻穿上。" 
+        },
+        { 
+            title: "支付與網路 (Payment)", 
+            content: "1. 現金為王：Denizli 巴士站寄放行李只收現金。建議在市區換匯，機場匯率極差。<br>2. 電壓：220V 雙圓孔插座 (歐規 Type F)，請自備萬用轉接頭。<br>3. 博物館通行證 (Museum Pass)：建議購買全土耳其通票 (Museum Pass Turkey)，包含以弗所、托普卡帕皇宮等，可省下大量排隊購票時間。" 
+        }
     ],
+
+    // 每日詳細行程 (修正圖片與文字)
     itinerary: [
         {
             day: 1,
@@ -93,7 +114,7 @@ const travelData = {
             day: 6,
             date: "2026/01/26 (一)",
             title: "熱氣球夢幻飛行 & 紅線之旅",
-            image: "https://images.unsplash.com/photo-1506462945848-ac8ea6f609cc?q=80&w=2672&auto=format&fit=crop",
+            image: "https://images.unsplash.com/photo-1506462945848-ac8ea6f609cc?q=80&w=2672&auto=format&fit=crop", // 已修正：熱氣球與奇岩
             details: [
                 { time: "05:00", action: "熱氣球飛行 (視天氣)", desc: "清晨接送，高空俯瞰月球般地貌，人生必解鎖清單。" },
                 { time: "09:30", action: "紅線之旅：烏奇沙城堡", desc: "攀登地區最高點，360度全景俯瞰卡帕多奇亞。" },
@@ -106,25 +127,25 @@ const travelData = {
             day: 7,
             date: "2026/01/27 (二)",
             title: "綠線探險與夜間巴士",
-            image: "https://images.unsplash.com/photo-1570939274717-7eda259b50ed?q=80&w=2574&auto=format&fit=crop", // 已確認為 Ihlara Valley
+            image: "https://images.unsplash.com/photo-1570939274717-7eda259b50ed?q=80&w=2574&auto=format&fit=crop", // 已修正：厄赫拉拉峽谷
             details: [
                 { time: "09:30", action: "代林庫尤地下城", desc: "深入地下 85 米的避難所，嘆為觀止的通風井與生活空間。" },
-                { time: "11:30", action: "厄赫拉拉谷健行 (Ihlara)", desc: "漫步溪谷，參觀溪畔岩石教堂，享受綠意盎然。" },
+                { time: "11:30", action: "厄赫拉拉谷健行 (Ihlara)", desc: "漫步溪谷，參觀溪畔岩石教堂，享受冬季雪景或綠意。" },
                 { time: "13:00", action: "貝利斯爾瑪午餐", desc: "在溪水上的涼亭享用特色鱒魚午餐。" },
                 { time: "15:00", action: "塞利梅修道院", desc: "星際大戰場景靈感來源，依山而建的巨大岩石建築群。" },
-                { time: "20:10", action: "夜間巴士移動", desc: "前往巴士站，搭乘 Kamil Koç 或 Flixbus 前往 Denizli (省下一晚住宿)。" }
+                { time: "20:10", action: "夜間巴士移動 (Kamil Koç)", desc: "前往巴士站，搭乘豪華大巴前往 Denizli (座位2+1，省下一晚住宿)。" }
             ]
         },
         {
             day: 8,
             date: "2026/01/28 (三)",
             title: "雪白棉堡與遺跡",
-            image: "https://images.unsplash.com/photo-1558254881-22964e52d3f9?q=80&w=2670&auto=format&fit=crop",
+            image: "https://images.unsplash.com/photo-1558254881-22964e52d3f9?q=80&w=2670&auto=format&fit=crop", // 棉堡
             details: [
-                { time: "07:30", action: "抵達 Denizli", desc: "於巴士站寄放行李 (注意：只收里拉現金)，搭乘小巴前往棉堡入口。" },
+                { time: "07:30", action: "抵達 Denizli", desc: "於巴士站 B1 層寄放行李 (注意：只收里拉現金)，搭乘小巴前往棉堡北門/南門。" },
                 { time: "08:30", action: "棉堡 (Pamukkale)", desc: "赤腳走在潔白石灰岩梯田，體驗溫暖的藍色溫泉水。" },
                 { time: "10:00", action: "希拉波里斯古城", desc: "參觀古羅馬圓形劇場、大型墓地與阿波羅神廟。" },
-                { time: "14:28", action: "搭乘火車前往 Selçuk", desc: "享受土耳其舒適的鐵道風光，車程約 3 小時。" },
+                { time: "14:28", action: "搭乘火車前往 Selçuk", desc: "享受土耳其舒適的鐵道風光，車程約 3 小時，不需劃位。" },
                 { time: "17:40", action: "抵達塞爾丘克", desc: "入住 Urkmez Hotel，就在火車站對面，交通極度便利。" }
             ]
         },
@@ -132,7 +153,7 @@ const travelData = {
             day: 9,
             date: "2026/01/29 (四)",
             title: "重返羅馬：以弗所",
-            image: "https://images.unsplash.com/photo-1576483582498-84242637f909?q=80&w=2669&auto=format&fit=crop",
+            image: "https://images.unsplash.com/photo-1576483582498-84242637f909?q=80&w=2669&auto=format&fit=crop", // 以弗所
             details: [
                 { time: "09:30", action: "以弗所遺跡 (Ephesus)", desc: "搭小巴前往南門。漫步庫里特斯大道，仰望塞爾蘇斯圖書館。" },
                 { time: "11:30", action: "古羅馬大劇院", desc: "可容納 25,000 人的震撼建築，曾是聖保羅傳教處。" },
@@ -146,7 +167,7 @@ const travelData = {
             title: "告別與返程",
             image: "https://images.unsplash.com/photo-1527838832700-5059252407fa?q=80&w=2598&auto=format&fit=crop",
             details: [
-                { time: "08:00", action: "前往 ADB 機場", desc: "搭乘火車或 HAVAŞ 接駁車前往伊士麥機場。" },
+                { time: "08:00", action: "前往 ADB 機場", desc: "搭乘火車或 HAVAŞ 接駁車前往伊士麥機場 (Izmir Adnan Menderes)。" },
                 { time: "10:40", action: "搭乘 TK2313 飛往伊斯坦堡", desc: "返回伊斯坦堡 IST 機場。" },
                 { time: "16:30", action: "搭乘 TG901 飛往曼谷", desc: "辦理出境手續，告別美麗的土耳其。" },
                 { time: "Note", action: "曼谷轉機提醒", desc: "抵達後需入境領行李，請備妥泰國簽證。" }
