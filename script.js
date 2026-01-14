@@ -1,57 +1,55 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 判斷目前在哪個頁面
     const path = window.location.pathname;
-    const isDetailPage = path.includes('detail.html');
-
-    if (!isDetailPage) {
-        initHomePage();
-    } else {
+    
+    // 簡單路由判斷
+    if (path.includes('detail.html')) {
         initDetailPage();
+    } else {
+        initHomePage();
     }
 });
 
 // --- 首頁邏輯 ---
 function initHomePage() {
+    // 1. 生成行程卡片
     const grid = document.getElementById('days-grid');
-    const tipsContainer = document.getElementById('tips-container');
-
-    // 生成每日卡片
     tripData.days.forEach(day => {
         const card = document.createElement('div');
         card.className = 'day-card';
         card.innerHTML = `
-            <div class="day-card-img" style="background-image: url('${day.image}');"></div>
-            <div class="day-card-content">
-                <div class="day-card-date">${day.date}</div>
-                <h3 class="day-card-title">${day.title}</h3>
-                <p class="day-card-desc">${day.summary}</p>
+            <img src="${day.image}" class="day-card-bg" alt="${day.title}">
+            <div class="day-card-overlay">
+                <span class="day-num">${day.date}</span>
+                <h3 class="day-title">${day.title}</h3>
+                <p class="day-desc">${day.desc}</p>
+                <span class="btn-text">View Details <i class="fas fa-arrow-right"></i></span>
             </div>
         `;
         card.onclick = () => window.location.href = `detail.html?day=${day.id}`;
         grid.appendChild(card);
     });
 
-    // 生成注意事項
-    tripData.tips.forEach((tip, index) => {
-        const item = document.createElement('div');
-        item.className = 'accordion-item';
-        item.innerHTML = `
-            <div class="accordion-header" onclick="toggleAccordion(${index})">
-                ${tip.title} <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="accordion-content" id="tip-${index}">
-                ${tip.content}
-            </div>
+    // 2. 生成行前備忘錄
+    const reminderContainer = document.getElementById('reminder-list');
+    tripData.essentials.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'reminder-item';
+        div.innerHTML = `
+            <div class="reminder-title"><i class="fas ${item.icon}"></i> ${item.title}</div>
+            <div style="color: #bdc3c7; font-size: 0.95rem;">${item.text}</div>
         `;
-        tipsContainer.appendChild(item);
+        reminderContainer.appendChild(div);
     });
-}
 
-// 摺疊選單開關
-function toggleAccordion(index) {
-    const content = document.getElementById(`tip-${index}`);
-    content.classList.toggle('active');
+    // 路線圖動畫 (簡單的延遲顯示)
+    const points = document.querySelectorAll('.route-point');
+    points.forEach((p, index) => {
+        setTimeout(() => {
+            p.style.opacity = '1'; 
+            // 這裡可以加入更多 CSS class 觸發動畫
+        }, index * 200);
+    });
 }
 
 // --- 詳細頁邏輯 ---
@@ -65,90 +63,77 @@ function initDetailPage() {
         return;
     }
 
-    // 填充導航日期
+    // 1. 填充 Header 資訊
     document.getElementById('nav-date').innerText = dayData.date;
-
-    // 填充主要內容
-    const container = document.getElementById('detail-content');
+    document.getElementById('detail-title').innerText = dayData.title;
+    document.getElementById('detail-subtitle').innerText = dayData.subtitle;
     
-    let htmlContent = `
-        <div class="detail-hero" style="background-image: linear-gradient(to top, #0B1026, transparent), url('${dayData.image}');">
-            <div class="detail-hero-content">
-                <h2>${dayData.title}</h2>
-                <p style="color: #Aab2cd;">${dayData.summary}</p>
-            </div>
-        </div>
-        <div class="container">
-    `;
-
-    // 飯店資訊 (如果有)
-    if (dayData.hotel) {
-        htmlContent += `
-            <div class="hotel-box" onclick="openMap('${dayData.hotel.name}')">
-                <div class="hotel-name"><i class="fas fa-bed"></i> ${dayData.hotel.name}</div>
-                <div class="hotel-loc">${dayData.hotel.location} <i class="fas fa-external-link-alt" style="font-size:0.7em; margin-left:5px;"></i></div>
+    // 設定 Hero 背景 (視差效果基底)
+    const hero = document.getElementById('detail-hero');
+    hero.style.backgroundImage = `url('${dayData.image}')`;
+    
+    // 2. 渲染左側：住宿卡片 (Hotel Card)
+    const hotelContainer = document.getElementById('hotel-card-container');
+    if (dayData.hotel && dayData.hotel.name !== "甜蜜的家") {
+        hotelContainer.innerHTML = `
+            <div class="info-card">
+                <span class="info-label"><i class="fas fa-bed"></i> Accommodation</span>
+                <div class="info-main">${dayData.hotel.name}</div>
+                <div class="info-sub">${dayData.hotel.area}</div>
+                <a href="#" class="btn-map" onclick="openMap('${dayData.hotel.name} ${dayData.hotel.area}')">
+                    <i class="fas fa-map-marker-alt"></i> 查看地圖
+                </a>
             </div>
         `;
     }
 
-    // 時間軸
-    htmlContent += `<div class="timeline">`;
-    
-    dayData.details.forEach(item => {
-        // 判斷類型以給予不同 icon
-        let icon = 'circle';
-        if(item.type === 'flight') icon = 'plane';
-        if(item.type === 'transport') icon = 'bus';
-        if(item.type === 'food') icon = 'utensils';
-        if(item.type === 'spot') icon = 'camera';
-        if(item.type === 'shop') icon = 'shopping-bag';
+    // 3. 渲染左側：交通卡片 (Transport Card)
+    const transportContainer = document.getElementById('transport-card-container');
+    if (dayData.transport) {
+        let transportItemsHtml = dayData.transport.items.map(t => `
+            <div style="margin-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">
+                <div style="color:white; font-weight:bold;">${t.label}</div>
+                <div style="color:#d4af37; font-size:0.9rem;">${t.value}</div>
+                <div style="color:#bdc3c7; font-size:0.8rem; font-style:italic;">${t.note}</div>
+            </div>
+        `).join('');
 
-        htmlContent += `
-            <div class="timeline-item">
-                <span class="time-tag">${item.time}</span>
-                <div style="margin-top: 5px;">
-                    <strong style="font-size: 1.1rem; color: #F4F4F9;">
-                        <i class="fas fa-${icon}" style="color: #D4AF37; width: 20px;"></i> ${item.title}
-                    </strong>
-                    <p style="color: #Aab2cd; margin-top: 5px;">${item.desc}</p>
-                    ${item.image ? `<img src="${item.image}" class="spot-image" alt="${item.title}">` : ''}
-                    ${item.type === 'transport' || item.type === 'flight' ? 
-                        `<div class="transport-box">
-                            <div class="transport-title"><i class="fas fa-info-circle"></i> 交通詳情</div>
-                            <div class="transport-info">請務必提早抵達，檢查護照/車票。</div>
-                        </div>` : ''}
+        transportContainer.innerHTML = `
+            <div class="info-card" style="border-color: #c0392b;">
+                <span class="info-label" style="color:#c0392b;"><i class="fas fa-plane"></i> Transport Info</span>
+                <div style="margin-top:10px;">
+                    ${transportItemsHtml}
                 </div>
             </div>
         `;
-    });
-
-    htmlContent += `</div>`; // End Timeline
-
-    // 下一天按鈕
-    const nextDayId = dayId + 1;
-    if (nextDayId <= tripData.days.length) {
-        htmlContent += `
-            <div class="next-day-container">
-                <a href="detail.html?day=${nextDayId}" class="btn-next">
-                    下一天行程 <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-        `;
-    } else {
-        htmlContent += `
-            <div class="next-day-container">
-                <a href="index.html" class="btn-next">
-                    <i class="fas fa-home"></i> 返回首頁
-                </a>
-            </div>
-        `;
     }
 
-    htmlContent += `</div>`; // End Container
-    container.innerHTML = htmlContent;
+    // 4. 渲染右側：時間軸
+    const timelineContainer = document.getElementById('timeline-content');
+    let timelineHtml = '';
+    dayData.timeline.forEach(item => {
+        timelineHtml += `
+            <div class="timeline-item">
+                <span class="time-badge">${item.time}</span>
+                <h4 class="event-title"><i class="fas fa-${item.icon}" style="width:20px; text-align:center; margin-right:5px; color:#d4af37;"></i> ${item.title}</h4>
+                <p class="event-desc">${item.desc}</p>
+                ${item.image ? `<img src="${item.image}" class="event-img" alt="${item.title}" loading="lazy">` : ''}
+            </div>
+        `;
+    });
+    timelineContainer.innerHTML = timelineHtml;
+
+    // 5. 設定「下一天」按鈕
+    const nextBtn = document.getElementById('next-day-btn');
+    const nextDayId = dayId + 1;
+    if (nextDayId <= tripData.days.length) {
+        nextBtn.href = `detail.html?day=${nextDayId}`;
+    } else {
+        nextBtn.innerHTML = '<i class="fas fa-home"></i> 返回首頁';
+        nextBtn.href = 'index.html';
+    }
 }
 
-// 開啟地圖功能
 function openMap(query) {
     const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
     window.open(url, '_blank');

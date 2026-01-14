@@ -3,61 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 土耳其星月奇蹟之旅</title>
+    <title>2026 土耳其星月奇蹟｜白金行程手冊</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
     <header class="hero-section">
-        <div class="overlay"></div>
-        <div class="hero-content">
-            <h3>TURKEY ROUND TRIP</h3>
-            <h1>星月奇蹟</h1>
-            <p class="subtitle">2026 冬季深度十日・終極攻略</p>
-            <div class="traveler-info">
-                <span><i class="fas fa-user"></i> Tseng</span>
-                <span><i class="fas fa-calendar-alt"></i> 01/21 - 01/31</span>
+        <div class="video-overlay"></div>
+        <div class="hero-content fade-in-up">
+            <h3 class="tracking-in-expand">TURKEY LUXURY TOUR</h3>
+            <h1 class="main-title">星月奇蹟</h1>
+            <div class="divider-gold"></div>
+            <p class="subtitle">2026 冬季深度十日・白金典藏攻略</p>
+            <div class="traveler-badge">
+                <i class="fas fa-user-astronaut"></i> 貴賓：Tseng 先生
             </div>
-            <a href="#itinerary" class="btn-scroll">開啟旅程</a>
+            <a href="#summary" class="btn-shine">開始探索</a>
         </div>
     </header>
 
-    <section class="route-map container">
-        <h2 class="section-title">Grand Route</h2>
-        <div class="route-visual">
-            <div class="route-step"><i class="fas fa-plane"></i> 台北</div>
-            <div class="route-line"></div>
-            <div class="route-step"><i class="fas fa-plane"></i> 曼谷</div>
-            <div class="route-line"></div>
-            <div class="route-step istanbul"><i class="fas fa-mosque"></i> 伊斯坦堡</div>
-            <div class="route-line"></div>
-            <div class="route-step"><i class="fas fa-mountain"></i> 卡帕多奇亞</div>
-            <div class="route-line"></div>
-            <div class="route-step"><i class="fas fa-water"></i> 棉堡</div>
-            <div class="route-line"></div>
-            <div class="route-step"><i class="fas fa-ruin"></i> 以弗所</div>
-            <div class="route-line"></div>
-            <div class="route-step"><i class="fas fa-home"></i> 台北</div>
+    <section id="summary" class="section-dark">
+        <div class="container">
+            <h2 class="section-heading">GRAND VOYAGE <span class="chinese-sub">旅程總覽</span></h2>
+            
+            <div class="route-container glass-panel">
+                <div class="route-track">
+                    <div class="route-point" data-city="台北"><i class="fas fa-home"></i></div>
+                    <div class="route-line"></div>
+                    <div class="route-point" data-city="曼谷"><i class="fas fa-plane"></i></div>
+                    <div class="route-line"></div>
+                    <div class="route-point active" data-city="伊斯坦堡"><i class="fas fa-mosque"></i></div>
+                    <div class="route-line"></div>
+                    <div class="route-point" data-city="卡帕多奇亞"><i class="fas fa-hot-air-balloon"></i></div>
+                    <div class="route-line"></div>
+                    <div class="route-point" data-city="棉堡"><i class="fas fa-water"></i></div>
+                    <div class="route-line"></div>
+                    <div class="route-point" data-city="以弗所"><i class="fas fa-columns"></i></div>
+                </div>
+                <div class="total-stats">
+                    <div class="stat-item">
+                        <span class="stat-num">11</span>
+                        <span class="stat-label">Days</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num">19,500</span>
+                        <span class="stat-label">km Total</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num">4</span>
+                        <span class="stat-label">Major Cities</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <p class="total-distance">總移動距離：約 19,500 公里</p>
     </section>
 
-    <section id="itinerary" class="container">
-        <h2 class="section-title">Daily Itinerary</h2>
-        <div id="days-grid" class="days-grid">
-            </div>
+    <section class="section-pattern">
+        <div class="container">
+            <h2 class="section-heading">DAILY ITINERARY <span class="chinese-sub">每日行程</span></h2>
+            <div id="days-grid" class="days-grid">
+                </div>
+        </div>
     </section>
 
-    <section class="reminders container">
-        <h2 class="section-title">Travel Tips</h2>
-        <div class="accordion" id="tips-container">
+    <section class="section-dark">
+        <div class="container">
+            <h2 class="section-heading">ESSENTIALS <span class="chinese-sub">行前重要須知</span></h2>
+            <div class="reminder-card glass-panel">
+                <div class="reminder-content" id="reminder-list">
+                    </div>
             </div>
+        </div>
     </section>
 
     <footer>
-        <p>Designed for Mr. Tseng | 2026 Turkey Tour</p>
+        <p>© 2026 Designed for Mr. Tseng | Top-Tier Travel Experience</p>
     </footer>
 
     <script src="data.js"></script>
