@@ -1,74 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Turkey Exclusive | Mr. Tseng</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>2026 土耳其星月奇蹟之旅</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <div class="hero" style="background-image: url('https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=2071&auto=format&fit=crop');">
-                <div class="hero-content">
-            <div class="hero-subtitle">Jan 21 - Jan 31, 2026</div>
-            <h1 class="hero-title">TURKEY<br>ROUND TRIP</h1>
-            <p style="color: #ccc;">Winter Exclusive Journey for Mr. Tseng</p>
-        </div>
-    </div>
-
-    <div class="container">
-        <h2 style="margin-bottom: 15px; color: var(--accent-gold);">Trip Status</h2>
-        <div class="card">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                <span><i class="fas fa-route"></i> Total Distance</span>
-                <b>19,500 km</b>
+    <header class="hero-section">
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <h3>TURKEY ROUND TRIP</h3>
+            <h1>星月奇蹟</h1>
+            <p class="subtitle">2026 冬季深度十日・終極攻略</p>
+            <div class="traveler-info">
+                <span><i class="fas fa-user"></i> Tseng</span>
+                <span><i class="fas fa-calendar-alt"></i> 01/21 - 01/31</span>
             </div>
-            <div class="route-map">
-                <div class="map-line"></div>
-                <div class="map-point"><div class="map-dot"></div>TPE</div>
-                <div class="map-point"><div class="map-dot"></div>BKK</div>
-                <div class="map-point"><div class="map-dot"></div>IST</div>
-                <div class="map-point"><div class="map-dot"></div>ASR</div>
-                <div class="map-point"><div class="map-dot"></div>ADB</div>
-                <div class="map-point"><div class="map-dot"></div>TPE</div>
-            </div>
+            <a href="#itinerary" class="btn-scroll">開啟旅程</a>
         </div>
+    </header>
 
-        <h2 style="margin: 30px 0 15px; color: var(--accent-gold);">Manager's Notes</h2>
-        <div class="card" style="border-left: 4px solid #ef4444;">
-            <h3><i class="fas fa-exclamation-triangle"></i> Essential Reminders</h3>
-            <ul style="margin-top: 10px; padding-left: 20px; font-size: 0.9rem; line-height: 1.6;">
-                <li><b>Scams:</b> Ignore shoe cleaners dropping brushes. Ignore "Let's have a drink" invites.</li>
-                <li><b>Transport:</b> Download BiTaksi/Uber. Don't hail cabs on street.</li>
-                <li><b>Winter Gear:</b> Wear non-slip boots (Cappadocia is icy).</li>
-                <li><b>Visas:</b> Need THAI VISA for return trip (Jan 30).</li>
-            </ul>
+    <section class="route-map container">
+        <h2 class="section-title">Grand Route</h2>
+        <div class="route-visual">
+            <div class="route-step"><i class="fas fa-plane"></i> 台北</div>
+            <div class="route-line"></div>
+            <div class="route-step"><i class="fas fa-plane"></i> 曼谷</div>
+            <div class="route-line"></div>
+            <div class="route-step istanbul"><i class="fas fa-mosque"></i> 伊斯坦堡</div>
+            <div class="route-line"></div>
+            <div class="route-step"><i class="fas fa-mountain"></i> 卡帕多奇亞</div>
+            <div class="route-line"></div>
+            <div class="route-step"><i class="fas fa-water"></i> 棉堡</div>
+            <div class="route-line"></div>
+            <div class="route-step"><i class="fas fa-ruin"></i> 以弗所</div>
+            <div class="route-line"></div>
+            <div class="route-step"><i class="fas fa-home"></i> 台北</div>
         </div>
+        <p class="total-distance">總移動距離：約 19,500 公里</p>
+    </section>
 
-        <h2 style="margin: 30px 0 15px; color: var(--accent-gold);">Daily Itinerary</h2>
-        <div class="nav-grid" id="day-grid">
+    <section id="itinerary" class="container">
+        <h2 class="section-title">Daily Itinerary</h2>
+        <div id="days-grid" class="days-grid">
             </div>
+    </section>
 
-        <br><br>
-        <p style="text-align: center; color: var(--text-muted); font-size: 0.8rem;">Designed for Professional Travel</p>
-    </div>
+    <section class="reminders container">
+        <h2 class="section-title">Travel Tips</h2>
+        <div class="accordion" id="tips-container">
+            </div>
+    </section>
+
+    <footer>
+        <p>Designed for Mr. Tseng | 2026 Turkey Tour</p>
+    </footer>
 
     <script src="data.js"></script>
-    <script>
-        const grid = document.getElementById('day-grid');
-        tripData.itinerary.forEach(day => {
-            const card = document.createElement('a');
-            card.className = 'day-card';
-            card.href = `detail.html?day=${day.day}`;
-            card.innerHTML = `
-                <span>DAY ${day.day}</span>
-                <h4 style="margin-top:5px;">${day.title}</h4>
-                <div style="font-size:0.75rem; color:#94a3b8; margin-top:5px;">${day.date}</div>
-            `;
-            grid.appendChild(card);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

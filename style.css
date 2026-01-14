@@ -1,246 +1,291 @@
-/* style.css - 視覺樣式設計 */
 :root {
-    --primary-bg: #0f172a; /* 午夜深藍 */
-    --card-bg: #1e293b; /* 稍微亮一點的藍 */
-    --text-main: #f8fafc; /* 雲朵白 */
-    --text-muted: #94a3b8;
-    --accent-red: #ef4444; /* 土耳其紅 */
-    --accent-gold: #d4af37; /* 帝國金 */
-    --glass: rgba(30, 41, 59, 0.7);
+    --primary-bg: #0B1026; /* 深午夜藍 */
+    --secondary-bg: #1B2440; /* 較淺的藍 */
+    --accent-red: #B9323F; /* 土耳其紅/石榴紅 */
+    --text-main: #F4F4F9; /* 大理石白 */
+    --text-muted: #Aab2cd;
+    --gold: #D4AF37; /* 點綴金 */
+    --card-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Lato', sans-serif;
+    --font-deco: 'Cinzel', serif;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Lato', sans-serif;
 }
 
 body {
     background-color: var(--primary-bg);
     color: var(--text-main);
+    font-family: var(--font-body);
+    line-height: 1.6;
     overflow-x: hidden;
 }
 
+/* --- 文字樣式 --- */
 h1, h2, h3 {
-    font-family: 'Cinzel', serif; /* 襯線字體增加歷史感 */
-    letter-spacing: 1px;
+    font-family: var(--font-heading);
+    font-weight: 700;
 }
 
-/* Common Header */
-.header-nav {
-    padding: 20px;
-    background: var(--primary-bg);
+a { text-decoration: none; color: inherit; }
+
+/* --- Hero Section --- */
+.hero-section {
+    height: 80vh;
+    background: linear-gradient(to bottom, rgba(11,16,38,0.3), var(--primary-bg)), url('https://images.unsplash.com/photo-1545459720-aacaf5090831?q=80&w=1920&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    color: var(--text-main);
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    margin: 10px 0;
+}
+
+.hero-content h3 {
+    font-family: var(--font-deco);
+    letter-spacing: 3px;
+    color: var(--accent-red);
+}
+
+.traveler-info span {
+    display: block;
+    margin: 5px 0;
+    font-size: 1.1rem;
+    color: var(--gold);
+}
+
+.btn-scroll {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 30px;
+    border: 1px solid var(--text-main);
+    color: var(--text-main);
+    border-radius: 50px;
+    transition: 0.3s;
+    backdrop-filter: blur(5px);
+}
+
+.btn-scroll:hover {
+    background: var(--accent-red);
+    border-color: var(--accent-red);
+}
+
+/* --- Container --- */
+.container {
+    padding: 40px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--accent-red);
+    margin: 10px auto 0;
+}
+
+/* --- Route Map --- */
+.route-visual {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 20px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+.route-step i { display: block; font-size: 1.2rem; margin-bottom: 5px; color: var(--gold); }
+.route-step { text-align: center; }
+.route-line { flex-grow: 1; height: 1px; background: var(--text-muted); margin: 0 5px; opacity: 0.3; }
+
+/* --- Days Grid --- */
+.days-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.day-card {
+    background: var(--secondary-bg);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.day-card:hover { transform: translateY(-5px); border-color: var(--accent-red); }
+
+.day-card-img {
+    height: 150px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.day-card-content { padding: 20px; }
+.day-card-date { color: var(--accent-red); font-weight: bold; font-size: 0.9rem; }
+.day-card-title { font-size: 1.4rem; margin: 5px 0 10px; }
+.day-card-desc { font-size: 0.9rem; color: var(--text-muted); }
+
+/* --- Detail Page Styles --- */
+.sticky-nav {
     position: sticky;
     top: 0;
-    z-index: 100;
+    background: rgba(11,16,38, 0.95);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-.brand {
-    color: var(--accent-gold);
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-/* Hero Sections */
-.hero {
-    height: 60vh;
+.detail-hero {
+    height: 40vh;
     background-size: cover;
     background-position: center;
     position: relative;
     display: flex;
     align-items: flex-end;
-    padding: 30px;
 }
 
-.hero::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(to bottom, transparent 40%, var(--primary-bg));
+.detail-hero-content {
+    background: linear-gradient(to top, var(--primary-bg), transparent);
+    width: 100%;
+    padding: 40px 20px 20px;
 }
 
-.hero-content {
-    position: relative;
-    z-index: 2;
-    animation: slideUp 1s ease;
-}
-
-.hero-title {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    color: var(--text-main);
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-}
-
-.hero-subtitle {
-    color: var(--accent-red);
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-/* Card Styles */
-.container {
+/* Timeline */
+.timeline {
     padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.card {
-    background: var(--card-bg);
-    border-radius: 16px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-    transition: transform 0.2s;
-    border: 1px solid rgba(255,255,255,0.05);
-}
-
-.card:active {
-    transform: scale(0.98);
-}
-
-/* Timeline Style */
-.timeline-item {
     border-left: 2px solid var(--accent-red);
-    padding-left: 20px;
-    margin-bottom: 30px;
+    margin-left: 20px;
+}
+
+.timeline-item {
+    margin-bottom: 40px;
     position: relative;
+    padding-left: 20px;
 }
 
 .timeline-item::before {
     content: '';
-    width: 12px;
-    height: 12px;
-    background: var(--accent-red);
-    border-radius: 50%;
     position: absolute;
-    left: -7px;
+    left: -29px;
     top: 5px;
+    width: 16px;
+    height: 16px;
+    background: var(--primary-bg);
+    border: 3px solid var(--accent-red);
+    border-radius: 50%;
 }
 
-.time {
-    color: var(--accent-gold);
+.time-tag {
+    background: var(--accent-red);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
     font-weight: bold;
-    font-size: 0.9rem;
 }
 
 /* Transport Box */
 .transport-box {
-    background: linear-gradient(45deg, #1e293b, #2d3f56);
-    border-left: 4px solid var(--accent-gold);
+    background: rgba(255,255,255,0.05);
+    border-left: 4px solid var(--gold);
     padding: 15px;
-    margin-top: 20px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
+    margin: 10px 0;
+    border-radius: 0 8px 8px 0;
 }
 
-.transport-icon {
-    font-size: 1.5rem;
-}
+.transport-title { color: var(--gold); font-weight: bold; margin-bottom: 5px; display: flex; align-items: center; gap: 10px; }
+.transport-info { font-size: 0.9rem; color: var(--text-main); }
 
-/* Buttons */
-.btn {
-    display: inline-block;
-    padding: 12px 25px;
-    background-color: var(--accent-red);
-    color: white;
-    text-decoration: none;
-    border-radius: 30px;
-    font-weight: bold;
+/* Hotel Box */
+.hotel-box {
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    padding: 15px;
+    border-radius: 10px;
     margin-top: 10px;
-    text-align: center;
-    transition: background 0.3s;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: 0.3s;
 }
+.hotel-box:hover { background: #26334d; }
+.hotel-name { font-size: 1.2rem; font-family: var(--font-heading); color: var(--text-main); }
+.hotel-loc { font-size: 0.8rem; color: var(--text-muted); margin-top: 5px; }
 
-.btn:hover {
-    background-color: #d32f2f;
+/* Tips Accordion */
+.accordion-item {
+    background: var(--secondary-bg);
+    margin-bottom: 10px;
+    border-radius: 8px;
 }
-
-.btn-full {
-    width: 100%;
-    margin-top: 30px;
-    background-color: var(--accent-gold);
-    color: #1a2a3a;
-}
-
-/* Map Visualization */
-.route-map {
+.accordion-header {
+    padding: 15px;
+    cursor: pointer;
+    font-weight: bold;
     display: flex;
     justify-content: space-between;
-    padding: 20px 0;
-    position: relative;
-    overflow-x: auto;
 }
-
-.map-point {
-    text-align: center;
-    font-size: 0.8rem;
+.accordion-content {
+    padding: 0 15px 15px;
     color: var(--text-muted);
-    min-width: 80px;
-    position: relative;
-    z-index: 2;
-}
-
-.map-line {
-    position: absolute;
-    top: 30px;
-    left: 40px;
-    right: 40px;
-    height: 2px;
-    background: var(--accent-red);
-    z-index: 1;
-    opacity: 0.5;
-}
-
-.map-dot {
-    width: 10px;
-    height: 10px;
-    background: var(--text-main);
-    border-radius: 50%;
-    margin: 0 auto 5px;
-}
-
-/* Utility */
-.warning {
-    color: #fbbf24;
     font-size: 0.9rem;
-    margin-top: 5px;
-    font-style: italic;
+    display: none; /* JS toggles this */
 }
+.accordion-content.active { display: block; }
 
-.nav-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 15px;
+/* Next Day Button */
+.next-day-container {
+    padding: 40px 20px;
+    text-align: center;
 }
-
-.day-card {
-    background: var(--card-bg);
-    border-radius: 12px;
-    padding: 15px;
-    text-decoration: none;
-    color: var(--text-main);
-    display: block;
-    position: relative;
-    overflow: hidden;
-}
-
-.day-card span {
-    color: var(--accent-red);
-    font-size: 0.8rem;
+.btn-next {
+    background: var(--text-main);
+    color: var(--primary-bg);
+    padding: 15px 40px;
+    border-radius: 50px;
     font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+}
+.btn-next:hover {
+    background: var(--accent-red);
+    color: white;
 }
 
-@keyframes slideUp {
-    from { transform: translateY(20px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+/* 針對景點圖片 */
+.spot-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 10px 0;
+    opacity: 0.9;
 }

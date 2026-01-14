@@ -1,46 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day Detail</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>行程詳情</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body>
-    
-    <div class="header-nav">
-        <a href="index.html" class="brand"><i class="fas fa-chevron-left"></i> Back</a>
-        <span class="brand" id="nav-date"></span>
-    </div>
+<body class="detail-page">
 
-    <div id="day-hero" class="hero">
-        <div class="hero-content">
-            <div class="hero-subtitle" id="day-number">DAY X</div>
-            <h1 class="hero-title" id="day-title">Loading...</h1>
-            <p id="day-loc"><i class="fas fa-map-marker-alt"></i> Location</p>
+    <nav class="sticky-nav">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> 返回總覽</a>
+        <span id="nav-date"></span>
+    </nav>
+
+    <div id="detail-content">
         </div>
-    </div>
-
-    <div class="container">
-        
-        <div class="transport-box">
-            <div class="transport-icon"><i class="fas fa-shuttle-van"></i></div>
-            <div>
-                <h4 style="color: var(--accent-gold); margin-bottom: 5px;">Today's Transport</h4>
-                <p id="transport-detail" style="font-size: 0.9rem;">Loading...</p>
-                <div id="transport-note" class="warning"></div>
-            </div>
-        </div>
-
-        <h3 style="margin: 30px 0 20px;">Schedule</h3>
-        <div id="timeline-container">
-            </div>
-
-        <a id="next-day-btn" href="#" class="btn btn-full">Next Day Plan <i class="fas fa-arrow-right"></i></a>
-
-    </div>
 
     <script src="data.js"></script>
     <script src="script.js"></script>
