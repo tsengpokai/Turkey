@@ -1,8 +1,9 @@
 // script.js
 
-// Helper to open Google Maps
+// Open Google Maps
 function openMap(query) {
     if(!query) return;
+    // 使用 encodeURIComponent 確保中文查詢正確
     window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`, '_blank');
 }
 
@@ -13,18 +14,18 @@ function renderIndex() {
     const daysContainer = document.getElementById('days-container');
     const tipsContainer = document.getElementById('tips-container');
 
-    if (!flightList) return; // Not on index page
+    if (!flightList) return; 
 
     // Flights
     travelData.flights.forEach(f => {
         flightList.innerHTML += `
             <div class="flight-row">
-                <div>
-                    <span class="route">${f.route}</span><br>
-                    <small>${f.flight}</small>
+                <div style="flex:1">
+                    <span class="route">${f.route}</span>
+                    <small style="color:#e67e22">${f.flight}</small>
                 </div>
                 <div style="text-align: right;">
-                    <span>${f.date}</span><br>
+                    <span style="font-weight:700">${f.date}</span>
                     <small>${f.time}</small>
                 </div>
             </div>
@@ -35,36 +36,36 @@ function renderIndex() {
     travelData.hotels.forEach(h => {
         hotelList.innerHTML += `
             <div class="hotel-row" onclick="openMap('${h.mapQuery}')">
-                <div>
-                    <span class="name">${h.name}</span> <i class="fas fa-map-marker-alt" style="font-size: 0.7rem;"></i><br>
+                <div style="flex:1">
+                    <span class="name"><i class="fas fa-map-marker-alt"></i> ${h.name}</span>
                     <small>${h.location}</small>
                 </div>
                 <div style="text-align: right;">
-                    <small>${h.dates}</small>
+                    <small style="background:#f0f0f0; padding:2px 6px; border-radius:4px;">${h.dates}</small>
                 </div>
             </div>
         `;
     });
 
     // Daily Cards
-    travelData.itinerary.forEach((day, index) => {
+    travelData.itinerary.forEach((day) => {
         daysContainer.innerHTML += `
             <div class="day-card" onclick="window.location.href='detail.html?day=${day.day}'">
                 <div class="day-img" style="background-image: url('${day.image}')"></div>
                 <div class="day-content">
-                    <div class="day-date">Day ${day.day} | ${day.date}</div>
+                    <div class="day-date">DAY ${day.day} | ${day.date}</div>
                     <h3 class="day-title">${day.title}</h3>
-                    <p class="day-desc">查看詳細行程 &rarr;</p>
+                    <div class="day-link">查看詳細行程 <i class="fas fa-long-arrow-alt-right"></i></div>
                 </div>
             </div>
         `;
     });
 
-    // Tips
+    // Tips (Removed "Manager" title logic handled in HTML)
     travelData.tips.forEach(tip => {
         tipsContainer.innerHTML += `
             <div class="tip-box">
-                <h4><i class="fas fa-info-circle"></i> ${tip.title}</h4>
+                <h4><i class="fas fa-check-circle"></i> ${tip.title}</h4>
                 <p>${tip.content}</p>
             </div>
         `;
@@ -80,7 +81,6 @@ function loadDayDetail() {
 
     if (!dayIndex || !contentDiv) return;
 
-    // Find data (Day 1 is index 0 in logic, but let's match day number)
     const dayData = travelData.itinerary.find(d => d.day === dayIndex);
 
     if (!dayData) {
@@ -88,45 +88,50 @@ function loadDayDetail() {
         return;
     }
 
-    // Render Header
+    // Scroll to top
+    window.scrollTo(0, 0);
+
     let html = `
         <div class="detail-header" style="background-image: url('${dayData.image}')">
             <div class="header-text">
-                <span style="background: var(--gold); padding: 5px 10px; font-size: 0.8rem; font-weight: bold; color: white;">DAY ${dayData.day}</span>
-                <h2 style="font-size: 3rem; color: white; margin-top: 10px;">${dayData.title}</h2>
-                <p style="font-size: 1.2rem; opacity: 0.9;">${dayData.date}</p>
+                <span style="background: var(--gold); padding: 4px 10px; font-size: 0.8rem; font-weight: 700; color: white; border-radius: 2px; text-transform: uppercase;">Day ${dayData.day}</span>
+                <h2>${dayData.title}</h2>
+                <p style="font-size: 1.1rem; opacity: 0.9; margin-top:5px;"><i class="far fa-calendar"></i> ${dayData.date}</p>
             </div>
         </div>
         <div class="container">
             <div class="daily-timeline">
     `;
 
-    // Render Timeline Items
     dayData.details.forEach(item => {
-        // Check if it's a transport item for special styling
+        // Auto-detect transport items for styling
         const isTransport = item.action.includes("搭乘") || item.action.includes("航班") || item.action.includes("接駁") || item.action.includes("移動");
-        const transportClass = isTransport ? "transport-highlight" : "";
-        const icon = isTransport ? '<i class="fas fa-bus"></i> ' : '';
+        const transportClass = isTransport ? "transport" : "";
+        
+        let icon = '';
+        if (item.action.includes("航班") || item.action.includes("飛往")) icon = '<i class="fas fa-plane"></i> ';
+        else if (item.action.includes("巴士") || item.action.includes("接駁")) icon = '<i class="fas fa-bus"></i> ';
+        else if (item.action.includes("火車")) icon = '<i class="fas fa-train"></i> ';
+        else if (item.action.includes("餐")) icon = '<i class="fas fa-utensils"></i> ';
 
         html += `
             <div class="time-block ${transportClass}">
                 <span class="time-display">${item.time}</span>
                 <h3 class="time-action">${icon}${item.action}</h3>
-                <p>${item.desc}</p>
+                <p class="time-desc">${item.desc}</p>
             </div>
         `;
     });
 
-    html += `</div></div>`; // Close containers
-    contentContent = html;
+    html += `</div></div>`;
     contentDiv.innerHTML = html;
 
-    // Setup Next Button
+    // Next Button Logic
     if (dayIndex < travelData.itinerary.length) {
         nextBtn.href = `detail.html?day=${dayIndex + 1}`;
-        nextBtn.style.display = "inline-block";
+        nextBtn.style.display = "inline-flex";
     } else {
-        nextBtn.style.display = "none"; // Last day
+        nextBtn.style.display = "none";
     }
 }
 

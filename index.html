@@ -2,8 +2,7 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 土耳其星月奇蹟之旅 | 專屬行程</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>2026 環繞土耳其一圈之旅 | Turkey Round Trip</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -11,8 +10,8 @@
 
     <header>
         <div class="container">
-            <h1>TR TURKEY EXCLUSIVE</h1>
-            <p>Professional Travel Guide for Mr. Tseng</p>
+            <h1 class="brand-title">TURKEY ROUND TRIP</h1>
+            <p class="brand-subtitle">環繞土耳其一圈之旅 • Professional Travel Guide for Mr. Tseng</p>
         </div>
     </header>
 
@@ -20,11 +19,9 @@
         <div class="hero-content">
             <h2>2026 Winter Odyssey</h2>
             <div class="hero-info">
-                <span>10 Days</span>
-                <span>•</span>
-                <span>Istanbul to Cappadocia</span>
-                <span>•</span>
-                <span>19,500 km</span>
+                <span><i class="fas fa-calendar-alt"></i> 10 Days</span>
+                <span class="divider">•</span>
+                <span><i class="fas fa-route"></i> 19,500 km</span>
             </div>
             <br>
             <a href="#itinerary" class="btn">開始旅程</a>
@@ -33,41 +30,47 @@
 
     <div class="container">
         <section class="map-section">
-            <h3>總旅程路線圖</h3>
+            <h3 class="section-title">全境路線圖 Route Map</h3>
             <div class="map-container">
-                <img src="https://images.unsplash.com/photo-1548685913-fe65d836338e?q=80&w=2000&auto=format&fit=crop" alt="Turkey Map Placeholder" id="routeMapImg">
-                <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">* 實際路線圖：伊斯坦堡 -> 卡帕多奇亞 -> 棉堡 -> 以弗所 -> 伊斯坦堡</p>
+                <img src="https://images.unsplash.com/photo-1548685913-fe65d836338e?q=80&w=2000&auto=format&fit=crop" alt="Turkey Route Map" id="routeMapImg" class="responsive-img">
+                
+                <div class="transport-legend">
+                    <div class="legend-item"><span class="line flight"></span> 飛行 (Flight)</div>
+                    <div class="legend-item"><span class="line bus"></span> 巴士 (Bus)</div>
+                    <div class="legend-item"><span class="line train"></span> 火車 (Train)</div>
+                </div>
+                <p class="map-note">* 實際路線：伊斯坦堡 ➔ 卡帕多奇亞 ➔ 棉堡 ➔ 以弗所 ➔ 伊斯坦堡</p>
             </div>
         </section>
 
         <section id="overview" class="info-grid">
             <div class="info-card">
-                <h3><i class="fas fa-plane"></i> 航班資訊</h3>
+                <h3><i class="fas fa-plane-departure"></i> 航班資訊</h3>
                 <div id="flight-list"></div>
             </div>
             <div class="info-card">
                 <h3><i class="fas fa-hotel"></i> 精選住宿</h3>
-                <p style="font-size: 0.8rem; margin-bottom: 15px; color: #888;">* 點擊飯店名稱可查看地圖</p>
+                <p class="hint-text">* 點擊飯店名稱可查看位置</p>
                 <div id="hotel-list"></div>
             </div>
         </section>
 
         <section id="itinerary">
-            <h2 style="text-align: center; margin-bottom: 20px;">每日行程一覽</h2>
-            <p style="text-align: center; margin-bottom: 40px; color: var(--text-light);">點擊卡片查看詳細交通與攻略</p>
+            <h2 class="section-title">每日行程一覽</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: #7f8c8d; font-size: 0.9rem;">點擊卡片查看詳細交通與攻略</p>
             <div class="timeline-grid" id="days-container">
                 </div>
         </section>
 
         <section style="margin-bottom: 80px;">
-            <h2 style="text-align: center;">經理筆記：旅行必備</h2>
+            <h2 class="section-title">旅行必備筆記 Essentials</h2>
             <div class="tips-grid" id="tips-container">
                 </div>
         </section>
     </div>
 
-    <footer style="background: #111; color: #555; text-align: center; padding: 20px;">
-        <p>&copy; 2026 Professional Travel Guide. Crafted for Tseng.</p>
+    <footer class="main-footer">
+        <p>© 2026 Turkey Round Trip. Crafted for Tseng.</p>
     </footer>
 
     <script src="data.js"></script>
