@@ -1,83 +1,74 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>TURKEY ROUND TRIP 環繞土耳其一圈之旅</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turkey Exclusive | Mr. Tseng</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <h1 class="brand-title">TURKEY ROUND TRIP</h1>
-            <p class="brand-subtitle">環繞土耳其一圈之旅 • Professional Travel Guide for Mr. Tseng</p>
+    <div class="hero" style="background-image: url('https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=2071&auto=format&fit=crop');">
+                <div class="hero-content">
+            <div class="hero-subtitle">Jan 21 - Jan 31, 2026</div>
+            <h1 class="hero-title">TURKEY<br>ROUND TRIP</h1>
+            <p style="color: #ccc;">Winter Exclusive Journey for Mr. Tseng</p>
         </div>
-    </header>
-
-    <section class="hero">
-        <div class="hero-content">
-            <h2>2026 Winter Odyssey</h2>
-            <div class="hero-info">
-                <span><i class="fas fa-calendar-alt"></i> 10 Days</span>
-                <span class="divider">•</span>
-                <span><i class="fas fa-route"></i> 19,500 km</span>
-            </div>
-            <br>
-            <a href="#itinerary" class="btn">開始旅程</a>
-        </div>
-    </section>
-
-    <div class="container">
-        <section class="map-section">
-            <h3 class="section-title">全境路線圖 Route Map</h3>
-            <div class="map-container">
-                
-                <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=2671&auto=format&fit=crop" alt="Turkey Custom Route Map" id="routeMapImg" class="responsive-img" style="max-height: 500px; object-fit: cover;">
-                
-                <div class="transport-legend">
-                    <div class="legend-item"><span class="line flight"></span> 飛行 (Flight)</div>
-                    <div class="legend-item"><span class="line bus"></span> 夜間巴士 (Night Bus)</div>
-                    <div class="legend-item"><span class="line train"></span> 火車/接駁 (Train/Shuttle)</div>
-                </div>
-                <p class="map-note">
-                    <i class="fas fa-map-signs"></i> 實際路線：伊斯坦堡 (IST/SAW) <i class="fas fa-plane"></i> 卡帕多奇亞 (ASR) <i class="fas fa-bus"></i> 棉堡/以弗所 <i class="fas fa-train"></i> 伊士麥 (ADB) <i class="fas fa-plane"></i> 伊斯坦堡
-                </p>
-            </div>
-        </section>
-
-        <section id="overview" class="info-grid">
-            <div class="info-card">
-                <h3><i class="fas fa-plane-departure"></i> 航班資訊</h3>
-                <div id="flight-list"></div>
-            </div>
-            <div class="info-card">
-                <h3><i class="fas fa-hotel"></i> 精選住宿</h3>
-                <p class="hint-text">* 點擊飯店名稱可查看位置</p>
-                <div id="hotel-list"></div>
-            </div>
-        </section>
-
-        <section id="itinerary">
-            <h2 class="section-title">每日行程一覽</h2>
-            <p style="text-align: center; margin-bottom: 30px; color: #7f8c8d; font-size: 0.9rem;">點擊卡片查看詳細交通與攻略</p>
-            <div class="timeline-grid" id="days-container">
-                </div>
-        </section>
-
-        <section style="margin-bottom: 80px;">
-            <h2 class="section-title">旅行必備筆記 Essentials</h2>
-            <div class="tips-grid" id="tips-container">
-                </div>
-        </section>
     </div>
 
-    <footer class="main-footer">
-        <p>© 2026 Turkey Round Trip. Crafted for Tseng.</p>
-    </footer>
+    <div class="container">
+        <h2 style="margin-bottom: 15px; color: var(--accent-gold);">Trip Status</h2>
+        <div class="card">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <span><i class="fas fa-route"></i> Total Distance</span>
+                <b>19,500 km</b>
+            </div>
+            <div class="route-map">
+                <div class="map-line"></div>
+                <div class="map-point"><div class="map-dot"></div>TPE</div>
+                <div class="map-point"><div class="map-dot"></div>BKK</div>
+                <div class="map-point"><div class="map-dot"></div>IST</div>
+                <div class="map-point"><div class="map-dot"></div>ASR</div>
+                <div class="map-point"><div class="map-dot"></div>ADB</div>
+                <div class="map-point"><div class="map-dot"></div>TPE</div>
+            </div>
+        </div>
+
+        <h2 style="margin: 30px 0 15px; color: var(--accent-gold);">Manager's Notes</h2>
+        <div class="card" style="border-left: 4px solid #ef4444;">
+            <h3><i class="fas fa-exclamation-triangle"></i> Essential Reminders</h3>
+            <ul style="margin-top: 10px; padding-left: 20px; font-size: 0.9rem; line-height: 1.6;">
+                <li><b>Scams:</b> Ignore shoe cleaners dropping brushes. Ignore "Let's have a drink" invites.</li>
+                <li><b>Transport:</b> Download BiTaksi/Uber. Don't hail cabs on street.</li>
+                <li><b>Winter Gear:</b> Wear non-slip boots (Cappadocia is icy).</li>
+                <li><b>Visas:</b> Need THAI VISA for return trip (Jan 30).</li>
+            </ul>
+        </div>
+
+        <h2 style="margin: 30px 0 15px; color: var(--accent-gold);">Daily Itinerary</h2>
+        <div class="nav-grid" id="day-grid">
+            </div>
+
+        <br><br>
+        <p style="text-align: center; color: var(--text-muted); font-size: 0.8rem;">Designed for Professional Travel</p>
+    </div>
 
     <script src="data.js"></script>
-    <script src="script.js"></script>
+    <script>
+        const grid = document.getElementById('day-grid');
+        tripData.itinerary.forEach(day => {
+            const card = document.createElement('a');
+            card.className = 'day-card';
+            card.href = `detail.html?day=${day.day}`;
+            card.innerHTML = `
+                <span>DAY ${day.day}</span>
+                <h4 style="margin-top:5px;">${day.title}</h4>
+                <div style="font-size:0.75rem; color:#94a3b8; margin-top:5px;">${day.date}</div>
+            `;
+            grid.appendChild(card);
+        });
+    </script>
 </body>
 </html>

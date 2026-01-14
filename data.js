@@ -1,188 +1,216 @@
-// data.js
-const travelData = {
-    // 品牌與基本資訊
-    traveler: "Tseng",
+/* data.js - 核心行程數據庫 */
+const tripData = {
+    traveler: "Mr. Tseng",
     dates: "2026/01/21 - 2026/01/31",
-    totalDistance: "19,500 km",
-    
-    // 航班 (維持不變)
-    flights: [
-        { date: "1/21", route: "台北 TPE ➔ 曼谷 BKK", flight: "TG635", time: "18:20 - 21:45", note: "泰航直掛，免入境" },
-        { date: "1/21", route: "曼谷 BKK ➔ 伊斯坦堡 IST", flight: "TG900", time: "23:45 - 06:05(+1)", note: "同航廈轉機" },
-        { date: "1/25", route: "伊斯坦堡 SAW ➔ 開塞利 ASR", flight: "VF3170", time: "07:15 - 08:40", note: "注意：SAW為亞洲岸機場" },
-        { date: "1/30", route: "伊士麥 ADB ➔ 伊斯坦堡 IST", flight: "TK2313", time: "10:40 - 12:05", note: "國內線" },
-        { date: "1/30", route: "伊斯坦堡 IST ➔ 曼谷 BKK", flight: "TG901", time: "16:30 - 05:20(+1)", note: "需備妥泰國簽證" },
-        { date: "1/31", route: "曼谷 BKK ➔ 台北 TPE", flight: "JX742", time: "13:45 - 18:25", note: "需入境領行李重掛" }
-    ],
-    
-    // 住宿 (維持不變)
-    hotels: [
-        { dates: "1/22-24", name: "Hotel Evsen", location: "伊斯坦堡 (舊城)", note: "Sirkeci 區，步行至 T1 電車站僅 2 分鐘", mapQuery: "Hotel Evsen Istanbul" },
-        { dates: "1/24-25", name: "Kaya Hotel", location: "伊斯坦堡 (亞洲)", note: "鄰近 SAW 機場，早班機專用", mapQuery: "Kaya Hotel Istanbul" },
-        { dates: "1/25-27", name: "Elegance Cave Suites", location: "格雷梅 (卡帕多奇亞)", note: "道地洞穴飯店，設有觀景露台", mapQuery: "Elegance Cave Suites Cappadocia" },
-        { dates: "1/27-28", name: "豪華夜間巴士", location: "移動中", note: "Kamil Koç / Flixbus (寬敞 2+1 座位)", mapQuery: "" },
-        { dates: "1/28-30", name: "Urkmez Hotel", location: "塞爾丘克", note: "火車站對面，旁邊即是古羅馬水道橋", mapQuery: "Urkmez Hotel Selcuk" }
-    ],
-
-    // 經理筆記 (大幅擴充版)
-    tips: [
-        { 
-            title: "安全與防詐騙 (Safety)", 
-            content: "1. 擦鞋童陷阱：伊斯坦堡舊城區若看到有人刷子掉落，絕對不要撿，這是敲詐起手式。<br>2. 拒絕搭訕：單身男性在塔克西姆區若遇陌生人熱情邀約『喝一杯』，請堅定拒絕 (Bar Scam)。<br>3. 計程車：請務必下載並使用 <strong>BiTaksi</strong> 或 <strong>Uber</strong>，避免路邊攔車被繞路或換假鈔。" 
-        },
-        { 
-            title: "交通移動攻略 (Transport)", 
-            content: "1. 伊斯坦堡卡 (Istanbulkart)：一人一卡不可共用，轉乘有優惠。地鐵站黃色機台可購買。<br>2. 夜間巴士：搭乘 Kamil Koç 請提早30分鐘到站，車程約10小時，建議自備頸枕與耳塞。<br>3. 廁所文化：土耳其公廁多需收費 (約5-10里拉)，請隨身準備小額零錢。" 
-        },
-        { 
-            title: "冬季極地裝備 (Winter Gear)", 
-            content: "1. 卡帕多奇亞嚴冬：一月氣溫常在零下，熱氣球清晨極冷，請備妥毛帽、手套、防風外套。<br>2. 鞋類選擇：綠線健行與紅線爬坡多泥濘結冰，<strong>強烈建議穿著深紋防滑登山靴</strong>，切勿穿白鞋或平底布鞋。<br>3. 棉堡：需赤腳進入，水溫極低，建議自備塑膠袋裝鞋，並帶厚毛襪上岸後立刻穿上。" 
-        },
-        { 
-            title: "支付與網路 (Payment)", 
-            content: "1. 現金為王：Denizli 巴士站寄放行李只收現金。建議在市區換匯，機場匯率極差。<br>2. 電壓：220V 雙圓孔插座 (歐規 Type F)，請自備萬用轉接頭。<br>3. 博物館通行證 (Museum Pass)：建議購買全土耳其通票 (Museum Pass Turkey)，包含以弗所、托普卡帕皇宮等，可省下大量排隊購票時間。" 
-        }
-    ],
-
-    // 每日詳細行程 (修正圖片與文字)
+    summary: {
+        flights: [
+            { date: "1/21", route: "TPE ➔ BKK", code: "TG635", time: "18:20 - 21:45" },
+            { date: "1/21", route: "BKK ➔ IST", code: "TG900", time: "23:45 - 06:05(+1)" },
+            { date: "1/25", route: "SAW ➔ ASR", code: "VF3170", time: "07:15 - 08:40" },
+            { date: "1/30", route: "ADB ➔ IST", code: "TK2313", time: "10:40 - 12:05" },
+            { date: "1/30", route: "IST ➔ BKK", code: "TG901", time: "16:30 - 05:20(+1)" },
+            { date: "1/31", route: "BKK ➔ TPE", code: "JX742", time: "13:45 - 18:25" }
+        ],
+        hotels: [
+            { name: "Hotel Evsen", loc: "Istanbul (Old City)", nights: "1/22-24" },
+            { name: "Kaya Hotel", loc: "Istanbul (Asia/SAW)", nights: "1/24-25" },
+            { name: "Elegance Cave Suites", loc: "Cappadocia", nights: "1/25-27" },
+            { name: "Urkmez Hotel", loc: "Selçuk", nights: "1/28-30" }
+        ]
+    },
     itinerary: [
         {
             day: 1,
-            date: "2026/01/21 (三)",
-            title: "啟程：飛向星月國度",
-            image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2674&auto=format&fit=crop",
-            details: [
-                { time: "15:30", action: "抵達桃園機場第一航廈", desc: "前往泰國航空櫃台報到，確認行李直掛伊斯坦堡 (IST)。" },
-                { time: "18:20", action: "搭乘 TG635 飛往曼谷", desc: "飛行時間約 3.5 小時，機上享用晚餐。" },
-                { time: "21:45", action: "抵達曼谷蘇凡納布 (BKK)", desc: "下機後請循「Transfer」指標走轉機通道，無需辦理入境簽證。" },
-                { time: "23:45", action: "搭乘 TG900 飛往伊斯坦堡", desc: "長途飛行約 11 小時，建議在機上充分休息。" }
-            ]
+            date: "2026/01/21 (Wed)",
+            title: "Departure & Transit",
+            location: "Taipei ➔ Bangkok",
+            imageQuery: "Bangkok Suvarnabhumi Airport modern interior",
+            highlights: [
+                { time: "15:30", title: "TPE Check-in", desc: "第一航廈，確認行李直掛伊斯坦堡 (IST)。" },
+                { time: "18:20", title: "TG635 起飛", desc: "前往曼谷，飛行時間約 3.5 小時。" },
+                { time: "21:45", title: "抵達曼谷轉機", desc: "走「Transfer」通道，不需入境，直接前往 TG900 登機門。" }
+            ],
+            transport: {
+                type: "Flight",
+                details: "TG635 / TG900",
+                note: "轉機時間 2小時，行李直掛。"
+            }
         },
         {
             day: 2,
-            date: "2026/01/22 (四)",
-            title: "舊城初見與蘇非儀式",
-            image: "https://images.unsplash.com/photo-1545459720-aacaf5090831?q=80&w=2535&auto=format&fit=crop",
-            details: [
-                { time: "06:05", action: "抵達伊斯坦堡 (IST)", desc: "入境後於機場換匯 (€50)、購買 Istanbulkart 交通卡。" },
-                { time: "07:30", action: "機場巴士移動", desc: "搭乘 Havaist 巴士 (HVIST-12) 前往 Aksaray，轉乘 T1 電車至 Sirkeci。" },
-                { time: "09:30", action: "Check-in: Hotel Evsen", desc: "寄放行李，享用土耳其式早餐。飯店位置極佳，步行至電車站僅2分鐘。" },
-                { time: "11:00", action: "地下水宮殿 Basilica Cistern", desc: "探訪梅杜莎頭像與淚柱，感受千年神祕氛圍。" },
-                { time: "12:30", action: "午餐：Sultanahmet Köftecisi", desc: "品嚐著名的百年烤肉丸老店。" },
-                { time: "14:00", action: "藍色清真寺 & 廣場", desc: "欣賞六根宣禮塔與內部精美的伊茲尼克藍磁磚。" },
-                { time: "19:00", action: "Hodjapasha 旋轉苦行僧", desc: "觀賞蘇非主義修行的神聖儀式 (UNESCO 文化遺產)。" }
-            ]
+            date: "2026/01/22 (Thu)",
+            title: "Imperial Echoes",
+            location: "Istanbul (Old City)",
+            imageQuery: "Basilica Cistern Medusa head dramatic lighting",
+            highlights: [
+                { time: "06:05", title: "抵達伊斯坦堡", desc: "入境後先換匯 (€50)、買 Istanbulkart 交通卡。" },
+                { time: "08:00", title: "機場交通", desc: "搭乘 Havaist 巴士前往舊城區，轉 T1 電車至 Sirkeci。" },
+                { time: "11:00", title: "地下水宮殿", desc: "拜占庭儲水池，必看梅杜莎頭像與淚柱。", link: "Basilica Cistern" },
+                { time: "14:00", title: "藍色清真寺", desc: "蘇丹艾哈邁德廣場，六根宣禮塔與伊茲尼克藍磁磚。", link: "Blue Mosque Istanbul" },
+                { time: "19:00", title: "旋轉苦行僧", desc: "Hodjapasha 文化中心，蘇非主義靈修儀式。", link: "Hodjapasha Cultural Centre" }
+            ],
+            transport: {
+                type: "Bus/Tram",
+                details: "IST Airport ➔ Havaist Bus ➔ T1 Tram (Sirkeci Stop)",
+                note: "步行至 Hotel Evsen 僅 2 分鐘。"
+            }
         },
         {
             day: 3,
-            date: "2026/01/23 (五)",
-            title: "帝國榮耀與大巴扎",
-            image: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?q=80&w=2538&auto=format&fit=crop",
-            details: [
-                { time: "09:00", action: "托普卡帕皇宮 Topkapi Palace", desc: "參觀鄂圖曼帝國權力中心。重點：后宮 (Harem) 與帝國寶庫。" },
-                { time: "11:30", action: "聖索菲亞大教堂 Hagia Sophia", desc: "見證宗教融合的建築奇蹟，宏偉圓頂與鑲嵌畫。" },
-                { time: "14:30", action: "大巴扎 Grand Bazaar", desc: "迷失在4000家店舖中，購買紀念品與體驗殺價樂趣。" },
-                { time: "17:00", action: "獨立大街 & 塔克西姆", desc: "搭乘 T1 轉 F1 纜車上山，體驗伊斯坦堡現代心臟與復古電車。" }
-            ]
+            date: "2026/01/23 (Fri)",
+            title: "The Heart of Empires",
+            location: "Istanbul",
+            imageQuery: "Hagia Sophia interior grand dome gold mosaics",
+            highlights: [
+                { time: "09:00", title: "托普卡帕皇宮", desc: "鄂圖曼蘇丹居所，參觀後宮與帝國寶庫。", link: "Topkapi Palace Museum" },
+                { time: "11:30", title: "聖索菲亞大教堂", desc: "1500年歷史建築奇蹟，宗教融合的見證。", link: "Hagia Sophia" },
+                { time: "14:30", title: "大巴扎", desc: "世界最大室內市集，感受商業活力。", link: "Grand Bazaar Istanbul" },
+                { time: "17:00", title: "獨立大街", desc: "搭乘復古紅色電車，漫步塔克西姆廣場。", link: "Istiklal Avenue" }
+            ],
+            transport: {
+                type: "Tram/Walk",
+                details: "全日主要步行或搭乘 T1 電車",
+                note: "前往獨立大街需搭 T1 至 Kabataş 轉 F1 纜車。"
+            }
         },
         {
             day: 4,
-            date: "2026/01/24 (六)",
-            title: "海峽遊船與跨洲移動",
-            image: "https://images.unsplash.com/photo-1622587678768-3e4b779a5563?q=80&w=2574&auto=format&fit=crop",
-            details: [
-                { time: "11:00", action: "博斯普魯斯海峽遊船", desc: "搭乘 Eminönü 碼頭出發的遊船，行駛於歐亞分界，欣賞跨海大橋。" },
-                { time: "14:00", action: "埃及香料市集 Spice Bazaar", desc: "沈浸在番紅花與土耳其咖啡的香氣中，採買果乾與軟糖。" },
-                { time: "15:30", action: "跨洲移動 (前往亞洲區)", desc: "搭乘 Marmaray 鐵路穿越海底隧道，轉地鐵 M4 線前往機場方向。" },
-                { time: "18:00", action: "Check-in: Kaya Hotel", desc: "入住鄰近 SAW 機場飯店，早點休息，準備明日早班機。" }
-            ]
+            date: "2026/01/24 (Sat)",
+            title: "Crossing Continents",
+            location: "Istanbul ➔ Asia Side",
+            imageQuery: "Bosphorus strait ferry view istanbul",
+            highlights: [
+                { time: "11:00", title: "博斯普魯斯遊船", desc: "行駛於歐亞分界，欣賞跨海大橋與海景皇宮。" },
+                { time: "14:00", title: "埃及香料市集", desc: "購買果乾、香料與土耳其軟糖的最佳地點。", link: "Spice Bazaar" },
+                { time: "15:30", title: "跨洲移動", desc: "前往亞洲區 SAW 機場飯店，準備明日早班機。" }
+            ],
+            transport: {
+                type: "Marmaray/Metro",
+                details: "Sirkeci (Marmaray) ➔ Ayrılık Çeşmesi (轉 M4 地鐵) ➔ SAW Airport",
+                note: "避開晚高峰，提早出發。"
+            }
         },
         {
             day: 5,
-            date: "2026/01/25 (日)",
-            title: "飛向奇岩：卡帕多奇亞",
-            image: "https://images.unsplash.com/photo-1641128324972-af3212f0f6bd?q=80&w=2670&auto=format&fit=crop",
-            details: [
-                { time: "07:15", action: "搭乘 VF3170 飛往開塞利", desc: "從 SAW 機場起飛，約 1 小時 25 分抵達。" },
-                { time: "09:10", action: "機場接駁巴士", desc: "搭乘 HAVAŞ 或預約接駁車前往格雷梅 (Göreme)，車程約 1 小時。" },
-                { time: "13:00", action: "格雷梅露天博物館", desc: "參觀岩窟教堂，務必進入「黑暗教堂 (Dark Church)」欣賞保存最完整的濕壁畫。" },
-                { time: "15:00", action: "Galerie Ikman 地毯店", desc: "網美必訪地毯店，拍攝極具視覺張力的照片 (需付費)。" },
-                { time: "17:00", action: "入住洞穴飯店", desc: "Check-in: Elegance Cave Suites，在露台享受日落美景。" }
-            ]
+            date: "2026/01/25 (Sun)",
+            title: "Lunar Landscape",
+            location: "Cappadocia",
+            imageQuery: "Goreme open air museum caves",
+            highlights: [
+                { time: "07:15", title: "飛往開塞利", desc: "VF3170 航班，08:40 抵達 ASR 機場。" },
+                { time: "09:30", title: "機場接駁", desc: "搭乘 HAVAŞ 巴士前往格雷梅 (Göreme)。" },
+                { time: "13:00", title: "格雷梅露天博物館", desc: "世界遺產，參觀黑暗教堂濕壁畫。", link: "Goreme Open Air Museum" },
+                { time: "15:00", title: "Galerie Ikman", desc: "網美地毯店，需付費拍攝極具張力的照片。", link: "Galerie Ikman" }
+            ],
+            transport: {
+                type: "Plane/Bus",
+                details: "SAW ➔ ASR (VF3170) / HAVAŞ Bus to Göreme",
+                note: "入住 Elegance Cave Suites 洞穴飯店。"
+            }
         },
         {
             day: 6,
-            date: "2026/01/26 (一)",
-            title: "熱氣球夢幻飛行 & 紅線之旅",
-            image: "https://images.unsplash.com/photo-1506462945848-ac8ea6f609cc?q=80&w=2672&auto=format&fit=crop", // 已修正：熱氣球與奇岩
-            details: [
-                { time: "05:00", action: "熱氣球飛行 (視天氣)", desc: "清晨接送，高空俯瞰月球般地貌，人生必解鎖清單。" },
-                { time: "09:30", action: "紅線之旅：烏奇沙城堡", desc: "攀登地區最高點，360度全景俯瞰卡帕多奇亞。" },
-                { time: "11:00", action: "仙女煙囪 & 帕夏貝", desc: "觀賞戴著帽子的奇特岩石與僧侶谷。" },
-                { time: "13:00", action: "想像谷 (Devrent Valley)", desc: "尋找駱駝岩石，發揮想像力。" },
-                { time: "15:00", action: "阿瓦諾斯陶藝", desc: "體驗紅河泥土製作的傳統腳踢拉胚工藝。" }
-            ]
+            date: "2026/01/26 (Mon)",
+            title: "Red Valley & Balloons",
+            location: "Cappadocia",
+            imageQuery: "Cappadocia hot air balloons sunrise winter snow",
+            highlights: [
+                { time: "05:00", title: "熱氣球飛行", desc: "視天氣而定，高空俯瞰白雪覆蓋的奇岩地貌。" },
+                { time: "09:30", title: "紅線之旅 (Red Tour)", desc: "烏奇沙城堡、帕夏貝 (精靈煙囪)、阿瓦諾斯陶藝。" },
+                { time: "14:00", title: "想像谷", desc: "Devrent Valley，尋找駱駝形狀的岩石。" }
+            ],
+            transport: {
+                type: "Tour Van",
+                details: "當地紅線一日遊包車/拼車",
+                note: "冬季路滑，建議穿著防滑靴。"
+            }
         },
         {
             day: 7,
-            date: "2026/01/27 (二)",
-            title: "綠線探險與夜間巴士",
-            image: "https://images.unsplash.com/photo-1570939274717-7eda259b50ed?q=80&w=2574&auto=format&fit=crop", // 已修正：厄赫拉拉峽谷
-            details: [
-                { time: "09:30", action: "代林庫尤地下城", desc: "深入地下 85 米的避難所，嘆為觀止的通風井與生活空間。" },
-                { time: "11:30", action: "厄赫拉拉谷健行 (Ihlara)", desc: "漫步溪谷，參觀溪畔岩石教堂，享受冬季雪景或綠意。" },
-                { time: "13:00", action: "貝利斯爾瑪午餐", desc: "在溪水上的涼亭享用特色鱒魚午餐。" },
-                { time: "15:00", action: "塞利梅修道院", desc: "星際大戰場景靈感來源，依山而建的巨大岩石建築群。" },
-                { time: "20:10", action: "夜間巴士移動 (Kamil Koç)", desc: "前往巴士站，搭乘豪華大巴前往 Denizli (座位2+1，省下一晚住宿)。" }
-            ]
+            date: "2026/01/27 (Tue)",
+            title: "Underground & Night Bus",
+            location: "Cappadocia ➔ Denizli",
+            imageQuery: "Derinkuyu underground city tunnels",
+            highlights: [
+                { time: "09:30", title: "綠線之旅 (Green Tour)", desc: "代林庫尤地下城 (深入地下85米)、厄赫拉拉峽谷健行。" },
+                { time: "13:00", title: "溪谷午餐", desc: "在 Belisırma 的水上涼亭用餐。" },
+                { time: "16:00", title: "星球大戰取景地", desc: "塞利梅修道院 (Selime Monastery)。" },
+                { time: "20:10", title: "夜間巴士", desc: "搭乘 Kamil Koç 或 Flixbus 前往 Denizli (棉堡)。" }
+            ],
+            transport: {
+                type: "Night Bus",
+                details: "Göreme Bus Station ➔ Denizli Otogarı",
+                note: "車程約 9-10 小時，車上有供水與點心。"
+            }
         },
         {
             day: 8,
-            date: "2026/01/28 (三)",
-            title: "雪白棉堡與遺跡",
-            image: "https://images.unsplash.com/photo-1558254881-22964e52d3f9?q=80&w=2670&auto=format&fit=crop", // 棉堡
-            details: [
-                { time: "07:30", action: "抵達 Denizli", desc: "於巴士站 B1 層寄放行李 (注意：只收里拉現金)，搭乘小巴前往棉堡北門/南門。" },
-                { time: "08:30", action: "棉堡 (Pamukkale)", desc: "赤腳走在潔白石灰岩梯田，體驗溫暖的藍色溫泉水。" },
-                { time: "10:00", action: "希拉波里斯古城", desc: "參觀古羅馬圓形劇場、大型墓地與阿波羅神廟。" },
-                { time: "14:28", action: "搭乘火車前往 Selçuk", desc: "享受土耳其舒適的鐵道風光，車程約 3 小時，不需劃位。" },
-                { time: "17:40", action: "抵達塞爾丘克", desc: "入住 Urkmez Hotel，就在火車站對面，交通極度便利。" }
-            ]
+            date: "2026/01/28 (Wed)",
+            title: "Cotton Castle",
+            location: "Pamukkale ➔ Selçuk",
+            imageQuery: "Pamukkale thermal pools white travertines",
+            highlights: [
+                { time: "07:30", title: "抵達與寄放行李", desc: "Denizli 巴士站 B1 寄放行李 (備里拉現金)。" },
+                { time: "08:30", title: "棉堡 (Pamukkale)", desc: "夢幻白石灰棚與藍色溫泉水，冬季需忍受赤腳冰冷。", link: "Pamukkale Travertines" },
+                { time: "10:00", title: "希拉波里斯古城", desc: "古羅馬劇場與阿波羅神廟遺跡。", link: "Hierapolis Archaeology Museum" },
+                { time: "14:28", title: "火車移動", desc: "搭乘 TCDD 火車前往 Selçuk (以弗所)。" }
+            ],
+            transport: {
+                type: "Train",
+                details: "Denizli Station ➔ Selçuk Station",
+                note: "入住 Urkmez Hotel，位於火車站對面。"
+            }
         },
         {
             day: 9,
-            date: "2026/01/29 (四)",
-            title: "重返羅馬：以弗所",
-            image: "https://images.unsplash.com/photo-1576483582498-84242637f909?q=80&w=2669&auto=format&fit=crop", // 以弗所
-            details: [
-                { time: "09:30", action: "以弗所遺跡 (Ephesus)", desc: "搭小巴前往南門。漫步庫里特斯大道，仰望塞爾蘇斯圖書館。" },
-                { time: "11:30", action: "古羅馬大劇院", desc: "可容納 25,000 人的震撼建築，曾是聖保羅傳教處。" },
-                { time: "14:00", action: "聖約翰大教堂", desc: "拜訪使徒約翰長眠之地，俯瞰阿亞索魯克城堡。" },
-                { time: "18:00", action: "最後的晚餐", desc: "在塞爾丘克小鎮享用愛琴海風味晚餐，度過悠閒夜晚。" }
-            ]
+            date: "2026/01/29 (Thu)",
+            title: "Roman Glory",
+            location: "Ephesus",
+            imageQuery: "Library of Celsus Ephesus sunny",
+            highlights: [
+                { time: "09:30", title: "以弗所古城", desc: "地中海保存最完整的羅馬城市。必看塞爾蘇斯圖書館、大劇院。", link: "Ephesus Archaeological Site" },
+                { time: "14:00", title: "聖約翰大教堂", desc: "使徒約翰長眠之地，拜占庭時期的宏偉遺跡。", link: "Basilica of St. John Selcuk" },
+                { time: "16:00", title: "庫里特斯大道", desc: "漫步大理石街道，感受千年前的繁華。" }
+            ],
+            transport: {
+                type: "Minibus/Walk",
+                details: "Selçuk 市區搭小巴 (Dolmuş) 至 Ephesus 北門",
+                note: "回程可由南門搭車。"
+            }
         },
         {
             day: 10,
-            date: "2026/01/30 (五)",
-            title: "告別與返程",
-            image: "https://images.unsplash.com/photo-1527838832700-5059252407fa?q=80&w=2598&auto=format&fit=crop",
-            details: [
-                { time: "08:00", action: "前往 ADB 機場", desc: "搭乘火車或 HAVAŞ 接駁車前往伊士麥機場 (Izmir Adnan Menderes)。" },
-                { time: "10:40", action: "搭乘 TK2313 飛往伊斯坦堡", desc: "返回伊斯坦堡 IST 機場。" },
-                { time: "16:30", action: "搭乘 TG901 飛往曼谷", desc: "辦理出境手續，告別美麗的土耳其。" },
-                { time: "Note", action: "曼谷轉機提醒", desc: "抵達後需入境領行李，請備妥泰國簽證。" }
-            ]
+            date: "2026/01/30 (Fri)",
+            title: "Farewell Turkey",
+            location: "Izmir ➔ Istanbul ➔ Bangkok",
+            imageQuery: "Izmir Adnan Menderes Airport",
+            highlights: [
+                { time: "07:30", title: "前往機場", desc: "搭乘火車 (IZBAN) 或 HAVAŞ 至伊士麥機場 (ADB)。" },
+                { time: "10:40", title: "國內線起飛", desc: "TK2313 飛往伊斯坦堡 (IST)。" },
+                { time: "16:30", title: "國際線返程", desc: "TG901 飛往曼谷，需備妥泰國簽證入境重掛行李。" }
+            ],
+            transport: {
+                type: "Plane",
+                details: "ADB ➔ IST ➔ BKK",
+                note: "兩段機票分開，注意轉機時間。"
+            }
         },
         {
             day: 11,
-            date: "2026/01/31 (六)",
-            title: "抵達溫暖的家",
-            image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2674&auto=format&fit=crop",
-            details: [
-                { time: "05:20", action: "抵達曼谷 BKK", desc: "入境領取行李，前往星宇航空 (JX) 櫃台重新報到。" },
-                { time: "13:45", action: "搭乘 JX742 飛往台北", desc: "體驗星宇航空服務，返回台灣。" },
-                { time: "18:25", action: "抵達桃園機場 TPE", desc: "平安歸賦，期待下一次旅程。" }
-            ]
+            date: "2026/01/31 (Sat)",
+            title: "Home Sweet Home",
+            location: "Bangkok ➔ Taipei",
+            imageQuery: "Starlux Airlines aircraft wing",
+            highlights: [
+                { time: "05:20", title: "抵達曼谷", desc: "入境領行李，辦理星宇航空 (JX) 報到。" },
+                { time: "13:45", title: "JX742 起飛", desc: "帶著滿滿回憶返回台北。" },
+                { time: "18:25", title: "抵達桃園", desc: "旅程圓滿結束。" }
+            ],
+            transport: {
+                type: "Plane",
+                details: "BKK ➔ TPE (JX742)",
+                note: "歡迎回家！"
+            }
         }
     ]
 };
