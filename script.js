@@ -1,5 +1,3 @@
-/* script.js */
-
 // Helper: Open Google Maps
 function getMapLink(query) {
     return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query + ' Turkey')}`;
@@ -15,9 +13,22 @@ function renderIndex() {
         card.className = 'day-card';
         card.onclick = () => window.location.href = `detail.html?day=${day.day}`;
         
+        // 判斷是否使用圖片或色塊
+        let headerHTML = '';
+        if (day.image) {
+            headerHTML = `<img src="${day.image}" alt="${day.title}">`;
+        } else {
+            // 使用低調色塊
+            headerHTML = `
+                <div class="no-img-header">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+            `;
+        }
+
         card.innerHTML = `
             <div class="day-date">${day.date.split(' ')[0]}</div>
-            <img src="${day.image}" alt="${day.title}">
+            ${headerHTML}
             <div class="day-card-content">
                 <div class="day-num">DAY ${day.day}</div>
                 <h2 class="day-title">${day.title}</h2>
@@ -27,7 +38,7 @@ function renderIndex() {
         list.appendChild(card);
     });
 
-    // Append General Reminders at bottom of index
+    // Append General Reminders
     const reminderSection = document.createElement('div');
     reminderSection.className = 'reminders';
     let remindersHTML = '<h2><i class="fas fa-exclamation-circle"></i> 重要提醒</h2>';
@@ -48,9 +59,19 @@ function renderDetail(dayNum) {
         return;
     }
 
-    // Header Image & Title
+    // Header Background 邏輯
+    let heroStyle = '';
+    let headerClass = 'detail-hero';
+    
+    if (dayData.image) {
+        heroStyle = `background-image: url('${dayData.image}')`;
+    } else {
+        // 詳細頁的色塊背景
+        heroStyle = `background: linear-gradient(135deg, #2c3e50, #4ca1af);`; 
+    }
+
     let html = `
-        <div class="detail-hero" style="background-image: url('${dayData.image}')">
+        <div class="${headerClass}" style="${heroStyle}">
             <div class="detail-header">
                 <div class="day-num" style="color:white; text-shadow: 1px 1px 5px rgba(0,0,0,0.5)">${dayData.date}</div>
                 <h1 style="font-family:'Playfair Display'; font-size:2rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.5)">${dayData.title}</h1>
