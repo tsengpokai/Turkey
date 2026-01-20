@@ -2,75 +2,57 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>2026 土耳其星月奇蹟｜冠軍設計版</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turkey Round Trip 2026</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-
-    <nav class="mobile-nav">
-        <div class="nav-brand">TURKEY '26</div>
-        <div style="color:var(--primary-gold); font-size:1.2rem;"><i class="fas fa-compass"></i></div>
-    </nav>
-
-    <header class="app-hero">
-        <div class="hero-content">
-            <h1 class="main-title">TURKEY<br>ODYSSEY</h1>
-            <p class="subtitle">Luxury Voyage for Tseng</p>
-        </div>
-    </header>
-
-    <section class="section-container">
-        <div class="section-header">
-            <h2>Journey Map</h2>
-            <p>路線概覽</p>
-        </div>
-        <div class="map-card">
-            <div style="display:flex; justify-content:center; gap:15px; margin-bottom:15px; font-size:0.8rem; color:#aaa;">
-                <span><span class="dot air"></span>飛機</span>
-                <span><span class="dot bus"></span>巴士</span>
-                <span><span class="dot train"></span>火車</span>
+    <div class="app-container">
+        <header class="hero">
+            <h1>TURKEY 2026</h1>
+            <p>Tseng's Exclusive Winter Journey</p>
+            <div class="hero-stats">
+                <span><i class="fas fa-calendar-alt"></i> 1/21 - 1/31</span>
+                <span><i class="fas fa-route"></i> 19,500 km</span>
             </div>
-            <div class="svg-container">
-                <svg viewBox="0 0 400 250">
-                    <path class="map-bg" d="M 20,80 Q 80,60 120,50 T 250,40 T 380,60 L 390,120 Q 380,180 300,190 T 100,200 L 20,150 Z" />
-                    <path d="M -20,20 Q 40,40 80,70" class="route-line flight-international" />
-                    <path d="M 80,70 Q 150,40 220,110" class="route-line flight" />
-                    <path d="M 220,110 L 160,160 L 100,150" class="route-line bus" />
-                    <path d="M 100,150 L 40,140" class="route-line train" />
-                    <path d="M 40,140 Q 30,100 80,70" class="route-line flight" />
-                    <g transform="translate(80, 70)"><circle r="3" class="node-point"/><text y="-8" class="node-label">IST</text></g>
-                    <g transform="translate(220, 110)"><circle r="3" class="node-point"/><text y="-8" class="node-label">KAP</text></g>
-                    <g transform="translate(100, 150)"><circle r="3" class="node-point"/><text y="12" class="node-label">PAM</text></g>
-                    <g transform="translate(40, 140)"><circle r="3" class="node-point"/><text y="12" class="node-label" x="-5">IZM</text></g>
-                </svg>
+        </header>
+
+        <div class="route-map-container">
+            <h3 style="margin-bottom:10px; font-size:0.9rem; color:#888;">ROUTE OVERVIEW</h3>
+            <svg class="route-svg" viewBox="0 0 300 150">
+                <path d="M20,75 Q80,10 150,75 T280,75" fill="none" stroke="#ddd" stroke-width="2" stroke-dasharray="5,5"/>
+                <path d="M20,75 L80,120 L150,75" fill="none" stroke="#E05A47" stroke-width="2"/> <path d="M150,75 L200,75" fill="none" stroke="#3282B8" stroke-width="2"/> <path d="M200,75 L280,75" fill="none" stroke="#0F4C75" stroke-width="2"/> <circle cx="20" cy="75" r="4" fill="#0F4C75"/> <text x="15" y="90" font-size="8">TPE</text>
+                <circle cx="80" cy="120" r="4" fill="#0F4C75"/> <text x="70" y="135" font-size="8">IST</text>
+                <circle cx="150" cy="75" r="4" fill="#0F4C75"/> <text x="140" y="65" font-size="8">CAP</text>
+                <circle cx="200" cy="75" r="4" fill="#0F4C75"/> <text x="190" y="90" font-size="8">PAM</text>
+                <circle cx="280" cy="75" r="4" fill="#0F4C75"/> <text x="270" y="90" font-size="8">IZM</text>
+            </svg>
+            <div style="font-size:0.7rem; color:#aaa; margin-top:5px;">
+                <span style="color:#E05A47">━</span> Flight &nbsp; 
+                <span style="color:#3282B8">━</span> Bus &nbsp; 
+                <span style="color:#0F4C75">━</span> Train
             </div>
         </div>
-    </section>
 
-    <section class="section-container">
-        <div class="section-header">
-            <h2>Highlights</h2>
-            <p>每日行程</p>
+        <div style="padding: 0 20px; overflow-x: auto; white-space: nowrap; margin-bottom: 10px;">
+            <div style="display: inline-block; background: #eef2f3; padding: 10px; border-radius: 8px; margin-right: 10px; font-size: 0.8rem;">
+                <i class="fas fa-snowflake" style="color:#3282B8;"></i> Cappadoccia: -5°C
+            </div>
+            <div style="display: inline-block; background: #eef2f3; padding: 10px; border-radius: 8px; font-size: 0.8rem;">
+                <i class="fas fa-wind" style="color:#0F4C75;"></i> Istanbul: 5°C
+            </div>
         </div>
-        <div id="days-list" class="mobile-card-list"></div>
-    </section>
 
-    <section class="section-container">
-        <div class="section-header">
-            <h2>Essentials</h2>
-            <p>行前通知</p>
-        </div>
-        <div id="reminder-scroll" class="scroll-snap-container"></div>
-    </section>
-
-    <footer style="text-align:center; padding:30px 0; color:#555; font-size:0.8rem;">
-        Mr. Tseng's Journey<br>Designed by AI Partner
-    </footer>
+        <div class="day-list" id="day-list">
+            </div>
+    </div>
 
     <script src="data.js"></script>
     <script src="script.js"></script>
+    <script>
+        // Init Index Page
+        renderIndex();
+    </script>
 </body>
 </html>
